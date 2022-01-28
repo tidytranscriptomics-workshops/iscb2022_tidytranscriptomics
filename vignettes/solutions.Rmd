@@ -1,0 +1,98 @@
+---
+title: "Solutions"
+author: "Stefano Mangiola and Maria Doyle"
+date: "6/9/2021"
+output: html_document
+---
+
+## What fraction of variance is explained by PC3?
+
+```
+counts_scal_PCA <-
+  counts_tt %>%
+  scale_abundance() %>%
+  reduce_dimensions(method = "PCA", .dims = 3)
+```
+
+## Which method detects the most differentially abundant transcripts, p value adjusted for multiple testing <  0.05 (FDR, adj.P.Val, padj)?
+
+
+```
+de_all %>%
+  
+  # Subset transcript information
+  pivot_transcript() %>%
+  
+  # Reshape for nesting
+  pivot_longer(
+    cols = -c(feature, symbol, .abundant, group:exon_name),
+    names_sep = "_",
+    names_to = c("method", "statistic"),
+    values_to = "value"
+  ) %>%
+  
+  # Filter statistic
+  filter(statistic %in% c("FDR", "adj.P.Val", "padj")) %>%  
+  filter(value < 0.05) %>%
+  
+  # Counting
+  count(method) %>%
+  
+  # Sort
+  arrange(desc(n))
+```
+
+What is the most abundant cell type overall in BRCA samples?
+
+```
+BRCA_cell_type_long %>%
+  group_by(cell_type) %>%
+  summarise(m = median(proportion)) %>%
+  dplyr::arrange(dplyr::desc(m))
+```
+
+## Single-cell nesting - quality control
+
+```
+mito_info_all_datasets <- pbmc_nested %>%
+    mutate(mitochondrion_info = map(
+    data,
+    ~ # Calculate mitochondrial statistics
+      perCellQCMetrics(.x, subsets = list(Mito = which(location == "MT"))) %>%
+
+      # Convert to tibble
+      as_tibble(rownames = "cell") %>%
+
+      # Label cells with high mitochondrial content
+      mutate(high_mitochondrion = isOutlier(subsets_Mito_percent, type = "higher"))
+  ))
+
+mito_info_all_datasets
+```
+
+## Reducing dimension - UMAP
+
+UMAP 1 of 2 components has **More** variability than 3 components
+
+```
+left_join(
+    pbmc %>%
+    runUMAP(ncomponents = 2, dimred="corrected") %>% 
+        as_tibble() %>% 
+        select(cell, UMAP1),
+    pbmc %>%
+        runUMAP(ncomponents = 3, dimred="corrected") %>% 
+        as_tibble() %>% 
+        select(cell, UMAP1),
+    by="cell"
+) %>%
+    summarise(sd(UMAP1.x), sd(UMAP1.y))
+```
+
+## Cell annotation
+
+Skeletal muscle
+
+```
+pbmc %>% count(label, first.labels) %>% arrange(desc(n))
+```

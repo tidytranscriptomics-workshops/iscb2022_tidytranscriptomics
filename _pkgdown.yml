@@ -1,0 +1,27 @@
+url: https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics
+
+template:
+  params:
+    bootswatch: flatly
+    ganalytics: UA-93043521-1
+
+home:
+  title: "TidyTranscriptomics"
+  type: inverse
+  
+toc:
+  depth: 4
+  
+navbar:
+  title: ~
+  type: default
+  left:
+    - text: Background
+      href: articles/background.html
+    - text: Workshop
+      href: articles/tidytranscriptomics.html
+
+  right:
+   - icon: fab fa-github
+     href: https://github.com/tidytranscriptomics-workshops/iscb2021_tidytranscriptomics
+    
