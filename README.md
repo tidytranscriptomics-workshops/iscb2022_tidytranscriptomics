@@ -5,7 +5,7 @@
 
 # Introduction to Tidy Transcriptomics
 <p float="left">
-<img height="100" alt="iscb2021" src="man/figures/iscb_logo.png"/>
+<img height="100" width="300" alt="iscbacademy" src="man/figures/ISCBacademy.png"/>
 <img height="100" alt="tidybulk" src="https://github.com/Bioconductor/BiocStickers/blob/master/tidybulk/tidybulk.png?raw=true"/>
 </p>
 
@@ -16,13 +16,13 @@
 
 ## Syllabus
 
-Material [web page](https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics/articles/tidytranscriptomics.html).
+Material [web page](https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics.html).
 
 More details on the workshop are below.
 
 ## Workshop package installation 
 
-For the iscb2021 workshop, an RStudio in the cloud will be provided with everything installed, all that participants will need is a web browser. 
+For the iscb2022 workshop, an RStudio in the cloud will be provided with everything installed, all that participants will need is a web browser. 
 
 If you want to install the packages and material post-workshop, the instructions are below. The workshop is designed for R `4.1` and Bioconductor 3.14.
 
@@ -33,70 +33,45 @@ If you want to install the packages and material post-workshop, the instructions
 Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS" = "true")
 
 # Install same versions used in the workshop
-remotes::install_github(c("stemangiola/tidybulk@v1.5.5", "stemangiola/tidySummarizedExperiment@v1.5.1", "stemangiola/tidySingleCellExperiment@v1.3.2"))
+remotes::install_github(c("stemangiola/tidyseurat@v0.4.0", "stemangiola/tidySingleCellExperiment@v1.3.3"))
 
 # Install workshop package
 
-remotes::install_github("tidytranscriptomics-workshops/iscb2021_tidytranscriptomics", build_vignettes = TRUE)
+remotes::install_github("tidytranscriptomics-workshops/iscb2022_tidytranscriptomics", build_vignettes = TRUE)
 
 # To view vignettes
-library(iscb2021tidytranscriptomics)
-browseVignettes("iscb2021tidytranscriptomics")
+library(iscb2022tidytranscriptomics)
+browseVignettes("iscb2022tidytranscriptomics")
 ```
 
-To run the code, you could then copy and paste the code from the workshop vignette or [R markdown file](https://raw.githubusercontent.com/tidytranscriptomics-workshops/iscb2021_tidytranscriptomics/master/vignettes/tidytranscriptomics.Rmd) into a new R Markdown file on your computer.
+To run the code, you could then copy and paste the code from the workshop vignette or [R markdown file](https://raw.githubusercontent.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/master/vignettes/tidytranscriptomics.Rmd) into a new R Markdown file on your computer.
 
 ## Workshop Description
 
-This tutorial will present how to perform analysis of single-cell and bulk RNA sequencing data following the tidy data paradigm. The tidy data paradigm provides a standard way to organise data values within a dataset, where each variable is a column, each observation is a row, and data is manipulated using an easy-to-understand vocabulary. Most importantly, the data structure remains consistent across manipulation and analysis functions.
+This tutorial will present how to perform analysis of single-cell RNA sequencing data following the tidy data paradigm. The tidy data paradigm provides a standard way to organise data values within a dataset, where each variable is a column, each observation is a row, and data is manipulated using an easy-to-understand vocabulary. Most importantly, the data structure remains consistent across manipulation and analysis functions.
 
-This can be achieved with the integration of packages present in the R CRAN and Bioconductor ecosystem, including [tidyseurat](https://stemangiola.github.io/tidyseurat/), [tidySingleCellExperiment](https://stemangiola.github.io/tidySingleCellExperiment/), [tidybulk](https://stemangiola.github.io/tidybulk/), [tidyHeatmap](https://stemangiola.github.io/tidyHeatmap/) and [tidyverse](https://www.tidyverse.org/). These packages are part of the tidytranscriptomics suite that introduces a tidy approach to RNA sequencing data representation and analysis. For more information see the [tidy transcriptomics blog](https://stemangiola.github.io/tidytranscriptomics/).
+This can be achieved with the integration of packages present in the R CRAN and Bioconductor ecosystem, including [tidyseurat](https://stemangiola.github.io/tidyseurat/), [tidySingleCellExperiment](https://stemangiola.github.io/tidySingleCellExperiment/) and [tidyverse](https://www.tidyverse.org/). These packages are part of the tidytranscriptomics suite that introduces a tidy approach to RNA sequencing data representation and analysis. For more information see the [tidy transcriptomics blog](https://stemangiola.github.io/tidytranscriptomics/).
 
 ### Pre-requisites
 
-* Familiarity with tidyverse syntax
-* Some familiarity with bulk RNA-seq and single cell RNA-seq
+* Basic familiarity with single cell transcriptomic analyses
+* Basic familiarity with tidyverse
 
-Strongly recommended background reading:
-
-https://melbournebioinformatics.github.io/r-intro-biologists/intro_r_biologists.html  
-https://towardsdatascience.com/coding-in-r-nest-and-map-your-way-to-efficient-code-4e44ba58ee4a by Rebecca O’Dwyer  
-https://finnstats.com/index.php/2021/04/02/tidyverse-in-r/
 
 ### Workshop Participation
 
-The workshop format is a 3 hour session consisting of hands-on demos, exercises and Q&A.
+The workshop format is a 2 hour session consisting of hands-on demos, exercises and Q&A.
 
 ### _R_ / _Bioconductor_ packages used
 
-* tidybulk
 * tidyseurat
-* tidyHeatmap
-* limma
-* edgeR
-* DESeq2
-* airway
+* tidySingleCellExperiment
 * org.Hs.eg.db
 * ggrepel
 * GGally
 * plotly
 
 
-### Time outline
-
-Guide
-
-| Activity                                                | Time |
-|---------------------------------------------------------|------|
-| **Part 1 Bulk RNA-seq Core**                            |      |
-|  *Hands-on Demos + Exercises*                           |  90m |
-|      Differential gene expression                       |      |
-|      Cell type composition analysis                     |      |
-| **Part 2 Single-cell RNA-seq**                          |      |
-|  *Hands-on Demos + Exercises*                           |  90m |
-|      Single-cell analysis                               |      |
-|      Pseudobulk analysis                                |      |
-| Total                                                   | 180m |
 
 ### Workshop goals and objectives
 
@@ -106,8 +81,7 @@ The tidytranscriptomics approach to RNA sequencing data analysis abstracts out t
 
 #### Learning goals
 
-* To understand the key concepts and steps of RNA sequencing data analysis
-* To approach data representation and analysis though a tidy data paradigm, integrating tidyverse with tidybulk, tidyseurat, tidySingleCellExperiment and tidyHeatmap.
+* To approach data representation and analysis though a tidy data paradigm, integrating tidyverse with tidyseurat, tidySingleCellExperiment and tidyHeatmap.
 
 #### Learning objectives
 
