@@ -1,8 +1,8 @@
 on: [push]
 
 env:
-  cache-version: v3
-  repo-name: tidytranscriptomics-workshops/iscb2021_tidytranscriptomics
+  cache-version: v1
+  repo-name: tidytranscriptomics-workshops/iscb2022_tidytranscriptomics
   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} 
 
 jobs:
@@ -18,9 +18,8 @@ jobs:
           BiocManager::install("preprocessCore", configure.args="--disable-threading")
           
           # We'll install the specific versions from the install instructions
-          BiocManager::install("stemangiola/tidybulk@v1.5.5")
-          BiocManager::install("stemangiola/tidySummarizedExperiment@v1.5.1")
-          BiocManager::install("stemangiola/tidySingleCellExperiment@v1.3.2")
+          BiocManager::install("stemangiola/tidyseurat@v0.4.0")
+          BiocManager::install("stemangiola/tidySingleCellExperiment@v1.3.3")
           
           # Then install the other dependencies in the usual way
           BiocManager::install(ask=FALSE)
