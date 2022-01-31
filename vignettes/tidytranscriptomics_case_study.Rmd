@@ -11,56 +11,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-library(glue)
 library(Seurat)
 library(SummarizedExperiment)
 library(colorspace)
 library(SeuratWrappers)
-library(here)
-
-
-```
-
-```{r}
-tibble(
-  observation = glue("observation {1:100}"),
-  variable_1 = rep("...", 100),
-  variable_2 = rep("...", 100),
-  variable_3 = map(1:100, ~ tibble(a = 1:10, b = 1:10)), 
-  variable_4 = map(1:100, ~ ggplot()),
-  variable_5 = map(1:100, ~ lm(y ~ x, data = data.frame(x=1:10, y=1:10))),
-  variable_6 = map(1:100, ~ SeuratObject::pbmc_small),
-  variable_7 = map(1:100, ~ tidySingleCellExperiment::pbmc_small)
-)
 ```
 
 
-```{r}
-my_vector = seq(1, 20); 
 
-# Imperative
-my_vector_modified = c()
-for(i in 1:length(my_vector)) {
-  my_vector_modified[i] = my_vector[i] * 2L
-}
-
-# Functional
-my_vector_modified = my_vector |> map_int(~ .x * 2L)
-
-df = data.frame(a= rep("a", ncol(SeuratObject::pbmc_small)), b= rep("b", ncol(SeuratObject::pbmc_small)))
-rownames(df)  = colnames(SeuratObject::pbmc_small)
-
-info = rep(1, ncol(SeuratObject::pbmc_small))
-SeuratObject::pbmc_small |>
-  AddMetaData(info, "info")
-
-colData(tidySingleCellExperiment::pbmc_small) |> cbind()
-
-```
 
 ```{r}
 library(tidyseurat)
-data(seurat_obj)
+seurat_obj <- iscb2022tidytranscriptomics::seurat_obj
 ```
 
 ```
@@ -230,7 +192,7 @@ seurat_obj |>
 
   mutate( gate = tidygate::gate_int(
     UMAP_1, UMAP_2, 
-    .size = 0.1, .color =signature_score , gate_list = readRDS("../dev/gate_for_biocasia2021.rds")
+    .size = 0.1, .color =signature_score , gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021
   ))
 ```
 
@@ -251,7 +213,7 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = readRDS("../dev/gate_for_biocasia2021.rds")) ) |> 
+  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021 )) |> 
   
   filter(gate == 1) 
 ```
@@ -273,7 +235,7 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = here("dev", "gate_for_biocasia2021.rds") %>% readRDS()) ) |> 
+  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021) ) |> 
   
   filter(gate == 1) |>
   
@@ -302,7 +264,7 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = readRDS("../dev/gate_for_biocasia2021.rds")) ) |> 
+  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021) ) |> 
   
   filter(gate == 1) |>
   
@@ -316,7 +278,7 @@ seurat_obj |>
   FindClusters( resolution = 0.3)
 ```
 
-```{r}
+```{r eval = FALSE}
 
 # Quality control
 library(Seurat)
