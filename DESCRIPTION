@@ -19,8 +19,9 @@ Depends:
     R (>= 4.0.0)
 Imports:
     tidySingleCellExperiment,
-    tidySummarizedExperiment,
     tidyseurat,
+    Seurat,
+    SeuratWrappers,
     stats,
     utils,
     tibble,
@@ -57,6 +58,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
+Remotes: satijalab/seurat-wrappers
 Biarch: true
 biocViews: RNASeq, DifferentialExpression, GeneExpression, Normalization, Clustering, QualityControl, Sequencing, SingleCell, Transcription, Transcriptomics
 URL: https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/
