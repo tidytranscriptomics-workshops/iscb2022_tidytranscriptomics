@@ -1,0 +1,10 @@
+pandoc: 2.14.0.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  tidytranscriptomics_case_study: tidytranscriptomics_case_study.html
+last_built: 2022-02-01T19:28Z
+urls:
+  reference: https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics/reference
+  article: https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics/articles
+
