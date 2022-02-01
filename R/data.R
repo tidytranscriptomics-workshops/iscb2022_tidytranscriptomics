@@ -1,34 +1,17 @@
-#' BRCA
-#'
-#' Subset of the TCGA BRCA data set
-#'
-#' @format  A tidy data frame.
-#' @usage data(BRCA)
-"BRCA"
-
-#' pbmc
-#'
-#' A SingleCellExperiment dataset of single cell RNA sequencing data
-#'
-#'
-#' @format  A SingleCellExperiment object.
-#' @usage data(pbmc)
-"pbmc"
-
-#' a subset version of pbmc in seurat format
+#'"seurat_obj"
 #'
 #' A Seurat dataset of single cell RNA sequencing data
 #'
 #'
 #' @format  A Seurat object.
-#' @usage data(pbmc_seurat)
-"pbmc_seurat"
+#' @usage data(seurat_obj)
+"seurat_obj"
 
-#' pbmc_mito_info_all_datasets
+#' gate_for_biocasia2021
 #'
-#' A SingleCellExperiment dataset of single cell RNA sequencing data. Used for one of the exercises
+#' Coordinates for a gate interactively drawn using tidygate
 #'
 #'
-#' @format  A SingleCellExperiment object.
-#' @usage data(pbmc_mito_info_all_datasets)
-"pbmc_mito_info_all_datasets"
+#' @format  A list containing x,y coordinates for one gate
+#' @usage data(gate_for_biocasia2021)
+"gate_for_biocasia2021"
