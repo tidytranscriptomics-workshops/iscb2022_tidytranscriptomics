@@ -14,9 +14,6 @@ jobs:
 
       - name: Query dependencies and update old packages
         run: |
-          ## To fix preprocessCore error https://github.com/stemangiola/tidybulk/issues/145
-          BiocManager::install("preprocessCore", configure.args="--disable-threading")
-          
           # We'll install the specific versions from the install instructions
           BiocManager::install("stemangiola/tidyseurat@v.2.5")
           BiocManager::install("stemangiola/tidySingleCellExperiment@v1.3.2")
