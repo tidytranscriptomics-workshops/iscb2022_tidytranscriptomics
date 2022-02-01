@@ -20,6 +20,7 @@ Depends:
 Imports:
     tidySingleCellExperiment,
     tidyseurat,
+    tidygate,
     Seurat,
     SeuratWrappers,
     stats,
