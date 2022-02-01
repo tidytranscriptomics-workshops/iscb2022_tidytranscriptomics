@@ -18,7 +18,7 @@ jobs:
           BiocManager::install("preprocessCore", configure.args="--disable-threading")
           
           # We'll install the specific versions from the install instructions
-          BiocManager::install("stemangiola/tidyseurat@v0.4.0")
+          BiocManager::install("stemangiola/tidyseurat@v2.5")
           BiocManager::install("stemangiola/tidySingleCellExperiment@v1.3.3")
           
           # Then install the other dependencies in the usual way
