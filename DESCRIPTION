@@ -53,7 +53,8 @@ Imports:
     rlang,
     magrittr,
     batchelor,
-    ggbeeswarm
+    ggbeeswarm,
+    R.utils
 Suggests:
     knitr,
     rmarkdown,
