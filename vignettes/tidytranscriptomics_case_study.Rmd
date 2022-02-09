@@ -37,7 +37,8 @@ seurat_obj <- iscb2022tidytranscriptomics::seurat_obj
 # take a look
 seurat_obj
 ```
-tidyseurat provides a bridge between the Seurat single-cell package [@butler2018integrating; @stuart2019comprehensive] and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the
+
+tidyseurat provides a bridge between the Seurat single-cell package and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the
 Seurat object as a tidyverse tibble, and provides Seurat-compatible *dplyr*, *tidyr*, *ggplot* and *plotly* functions.
 
 If we load the *tidyseurat* package and then view the single cell data, it now displays as a tibble.
@@ -100,7 +101,7 @@ seurat_obj |>
   ) 
 ```
 
-We can use `join_features` with tidyverse `mutate` to create a column containing a signature score from genes of interest.
+We can use `join_features` with tidyverse `mutate` to create a column containing a signature score from genes of interest. Here we use a signature from [@Pizzolato2019].
 
 ```{r}
 
