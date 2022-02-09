@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>use_cases_BioCAsia2021 • iscb2022tidytranscriptomics</title>
+<title>Tidy Transcriptomics case study • iscb2022tidytranscriptomics</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="use_cases_BioCAsia2021">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Tidy Transcriptomics case study">
 <meta property="og:description" content="iscb2022tidytranscriptomics">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -72,10 +72,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>use_cases_BioCAsia2021</h1>
-                        <h4 data-toc-skip class="author">Stefano Mangiola</h4>
+      <h1 data-toc-skip>Tidy Transcriptomics case study</h1>
+                        <h4 data-toc-skip class="author">Maria Doyle, Peter MacCallum Cancer Centre<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+</h4>
+                        <h4 data-toc-skip class="author">Stefano Mangiola, Walter and Eliza Hall Institute<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>
+</h4>
             
-            <h4 data-toc-skip class="date">10/28/2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/blob/HEAD/vignettes/tidytranscriptomics_case_study.Rmd" class="external-link"><code>vignettes/tidytranscriptomics_case_study.Rmd</code></a></small>
       <div class="hidden name"><code>tidytranscriptomics_case_study.Rmd</code></div>
@@ -84,6 +86,35 @@
 
     
     
+<div class="section level2">
+<h2 id="instructors">Instructors<a class="anchor" aria-label="anchor" href="#instructors"></a>
+</h2>
+<p><em>Dr. Stefano Mangiola</em> is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.</p>
+<p><em>Dr. Maria Doyle</em> is the Application and Training Specialist for Research Computing at the Peter MacCallum Cancer Centre in Melbourne, Australia. She has a PhD in Molecular Biology and currently works in bioinformatics and data science education and training. She is passionate about supporting researchers, reproducible research, open source and tidy data.</p>
+</div>
+<div class="section level2">
+<h2 id="workshop-goals-and-objectives">Workshop goals and objectives<a class="anchor" aria-label="anchor" href="#workshop-goals-and-objectives"></a>
+</h2>
+<p>This workshop will demonstrate a real-world example of using tidy transcriptomics packages, such as tidyseurat, to perform a single cell analysis.</p>
+<p>This workshop is not a step-by-step introduction in how to perform single-cell analysis. For an overview of single-cell analysis steps performed in a tidy way please see the <a href="https://tidytranscriptomics-workshops.github.io/ismb2021_tidytranscriptomics/articles/tidytranscriptomics.html" class="external-link">ISMB2021 workshop</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
+<div class="section level3">
+<h3 id="cloud">Cloud<a class="anchor" aria-label="anchor" href="#cloud"></a>
+</h3>
+<p>Easiest way to run this material. Only available during workshop. Many thanks to the Australian Research Data Commons (ARDC) for providing RStudio in the Australian Nectar Research Cloud and Andy Botting from ARDC for helping to set up.</p>
+<ul>
+<li>Login to one of the servers (e.g. <a href="https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/" class="external-link uri">https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/</a>) with one of the usernames and passwords from the spreadsheet provided at the workshop. Add your name into the spreadsheet beside the login you’re using.</li>
+<li>Open <code>tidytranscriptomics_case_study.Rmd</code> in <code>ismb2022_tidytranscriptomcs/vignettes</code> folder</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="local">Local<a class="anchor" aria-label="anchor" href="#local"></a>
+</h3>
+<p>We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions <a href="https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/index.html#workshop-package-installation" class="external-link">here</a>.</p>
+<p>Alternatively, you can view the material at the workshop webpage <a href="https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html" class="external-link">here</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat" class="external-link">Seurat</a></span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Registered S3 method overwritten by 'spatstat.geom':</span>
@@ -104,10 +135,23 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/" class="external-link">colorspace</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SeuratWrappers</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="introduction-to-tidyseurat">Introduction to tidyseurat<a class="anchor" aria-label="anchor" href="#introduction-to-tidyseurat"></a>
+</h2>
+<p>Seurat is a very popular analysis toolkit for single cell RNA sequencing data <span class="citation">(Butler et al. 2018; Stuart et al. 2019)</span> .</p>
+<p>Here we load single-cell data in Seurat object format. This data is peripheral blood mononuclear cells (PBMCs) from metastatic breast cancer patients.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidyseurat" class="external-link">tidyseurat</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># load single cell RNA sequencing data</span>
+<span class="va">seurat_obj</span> <span class="op">&lt;-</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/seurat_obj.html">seurat_obj</a></span>
+
+<span class="co"># take a look</span>
+<span class="va">seurat_obj</span></code></pre></div>
+<pre><code><span class="co">## Loading required package: tidyseurat</span></code></pre>
+<pre><code><span class="co">## Loading required package: ttservice</span></code></pre>
 <pre><code><span class="co">## ========================================</span>
-<span class="co">## tidyseurat version 0.3.0</span>
+<span class="co">## tidyseurat version 0.5.1</span>
 <span class="co">## If you use TIDYSEURAT in published research, please cite:</span>
 <span class="co">## </span>
 <span class="co">## Mangiola et al. Interfacing Seurat with the R tidy universe. Bioinformatics 2021.</span>
@@ -125,66 +169,9 @@
 <pre><code><span class="co">## The following object is masked from 'package:stats':</span>
 <span class="co">## </span>
 <span class="co">##     filter</span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seurat_obj</span> <span class="op">&lt;-</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/seurat_obj.html">seurat_obj</a></span></code></pre></div>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-<span class="co"># Subsampling</span>
-
-<span class="va">single_cell_data</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/count.html" class="external-link">add_count</a></span><span class="op">(</span><span class="va">sample</span>, name <span class="op">=</span> <span class="st">"tot_cells"</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>median_cells <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">tot_cells</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">nest</a></span><span class="op">(</span>data <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">sample</span>, <span class="va">median_cells</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">median_cells</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">.y</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-
-<span class="co"># Define cell categories for analysis plotting</span>
-
-<span class="va">single_cell_data</span> |&gt;
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>cell_differentiation <span class="op">=</span> 
-           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span>
-             <span class="va">curated_cell_type_pretty</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B immature"</span>, <span class="st">"B mem"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"B"</span>,
-             <span class="va">curated_cell_type_pretty</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pDC"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"pDC"</span>,
-             <span class="va">cell_differentiation</span> <span class="op">==</span> <span class="st">"lymphoid"</span> <span class="op">~</span> <span class="st">"T+NK"</span>,
-             <span class="va">cell_differentiation</span> <span class="op">==</span> <span class="st">"myeloid"</span> <span class="op">~</span> <span class="st">"Myeloid"</span>
-           <span class="op">)</span>
-  <span class="op">)</span> |&gt; 
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>
-    curated_cell_type_pretty <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span>
-      <span class="va">curated_cell_type_pretty</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T gd1"</span>,  <span class="st">"T gd2"</span><span class="op">)</span>, 
-      <span class="st">"gamma_delta"</span> , 
-      <span class="va">curated_cell_type_pretty</span>
-    <span class="op">)</span>
-  <span class="op">)</span></code></pre>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-
-<span class="va">seurat_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"/stornext/Bioinf/data/bioinf-data/Papenfuss_lab/projects/mangiola.s/PostDoc/oligo_breast/expanded_analyses_with_control/cancer_only_analyses/lymphoid/cancer_lymphoid_cell_type_curated.rds"</span><span class="op">)</span>
-
-
-<span class="va">seurat_obj</span> <span class="op">=</span> <span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://satijalab.org/seurat/reference/RunPCA.html" class="external-link">RunPCA</a></span><span class="op">(</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">contains</a></span><span class="op">(</span><span class="st">"UMAP"</span><span class="op">)</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span>dims<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span>
-<span class="va">seurat_obj</span> <span class="op">=</span> <span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cell</span>, <span class="va">file</span>, <span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">9</span>,<span class="va">S.Score</span>, <span class="va">G2M.Score</span> , <span class="va">Phase</span> , <span class="va">curated_cell_type</span> , <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">contains</a></span><span class="op">(</span><span class="st">"UMAP"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">seurat_obj</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="st">"dev/seurat_obj_for_BioCAsia2021.rds"</span><span class="op">)</span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"restore_Seurat_show"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seurat_obj</span> </code></pre></div>
-<pre><code><span class="co">## An object of class tidyseurat </span>
-<span class="co">## 3006 features across 36683 samples within 2 assays </span>
-<span class="co">## Active assay: SCT (6 features, 0 variable features)</span>
-<span class="co">##  1 other assay present: RNA</span>
-<span class="co">##  1 dimensional reduction calculated: umap</span></code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"restore_Seurat_show"</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidyseurat" class="external-link">tidyseurat</a></span><span class="op">)</span>
-<span class="va">seurat_obj</span> </code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 15</span></span>
 <span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
 <span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
 <span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1    CD4+_ribosome_r…</span>
 <span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S     CD4+_Tcm_S100A4…</span>
@@ -199,7 +186,99 @@
 <span class="co">## <span style="color: #949494;"># … with 36,673 more rows, and 6 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<p>tidyseurat provides a bridge between the Seurat single-cell package and the tidyverse <span class="citation">(Wickham et al. 2019)</span>. It creates an invisible layer that enables viewing the Seurat object as a tidyverse tibble, and provides Seurat-compatible <em>dplyr</em>, <em>tidyr</em>, <em>ggplot</em> and <em>plotly</em> functions.</p>
+<p>If we load the <em>tidyseurat</em> package and then view the single cell data, it now displays as a tibble.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidyseurat" class="external-link">tidyseurat</a></span><span class="op">)</span>
+
+<span class="va">seurat_obj</span> </code></pre></div>
+<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 15</span></span>
+<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S     CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.094<span style="text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.193</span>  S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AA… ../d… AAACGC… 1     BCB1… -<span style="color: #BB0000;">0.067</span><span style="color: #BB0000; text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.205</span>  G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.021<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.124</span>  S     CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AA… ../d… AAAGAA… 1     BCB1…  0.059<span style="text-decoration: underline;">8</span>    -<span style="color: #BB0000;">0.196</span>  S     MAIT            </span>
+<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AA… ../d… AAAGGA… 1     BCB1…  0.028<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.054</span><span style="color: #BB0000; text-decoration: underline;">0</span> S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.011<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.099</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     MAIT            </span>
+<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.034<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.143</span>  S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;">10</span> 1_AA… ../d… AAAGTC… 1     BCB1…  0.042<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.183</span>  S     MAIT            </span>
+<span class="co">## <span style="color: #949494;"># … with 36,673 more rows, and 6 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
+<p>It can be interacted with using <a href="https://satijalab.org/seurat/articles/essential_commands.html" class="external-link">Seurat commands</a> such as <code>Assays</code>.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/ObjectAccess.html" class="external-link">Assays</a></span><span class="op">(</span><span class="va">seurat_obj</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "RNA" "SCT"</span></code></pre>
+<p>We can also interact with our object as we do with any tidyverse tibble.</p>
+<div class="section level3">
+<h3 id="tidyverse-commands">Tidyverse commands<a class="anchor" aria-label="anchor" href="#tidyverse-commands"></a>
+</h3>
+<p>We can use tidyverse commands, such as <code>filter</code>, <code>select</code> and <code>mutate</code> to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website <a href="https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1" class="external-link">here</a>.</p>
+<p>We can use <code>filter</code> to choose rows, for example, to see just the rows for the cells in G1 cell-cycle stage. Check if have groups or ident present.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Phase</span> <span class="op">==</span> <span class="st">"G1"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 19,968 × 15</span></span>
+<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>  -<span style="color: #BB0000;">0.103</span>   G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGC… 1     BCB1… -<span style="color: #BB0000;">0.067</span><span style="color: #BB0000; text-decoration: underline;">6</span>   -<span style="color: #BB0000;">0.205</span>   G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AA… ../d… AAAGTC… 1     BCB1… -<span style="color: #BB0000;">0.028</span><span style="color: #BB0000; text-decoration: underline;">9</span>   -<span style="color: #BB0000;">0.127</span>   G1    CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AA… ../d… AAAGTG… 1     BCB1… -<span style="color: #BB0000;">0.055</span><span style="color: #BB0000; text-decoration: underline;">1</span>   -<span style="color: #BB0000;">0.102</span>   G1    CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AA… ../d… AAATGG… 1     BCB1… -<span style="color: #BB0000;">0.020</span><span style="color: #BB0000; text-decoration: underline;">7</span>   -<span style="color: #BB0000;">0.060</span><span style="color: #BB0000; text-decoration: underline;">2</span>  G1    TCR_V_Delta_2   </span>
+<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AA… ../d… AAATGG… 1     BCB1… -<span style="color: #BB0000;">0.019</span><span style="color: #BB0000; text-decoration: underline;">5</span>   -<span style="color: #BB0000;">0.008</span><span style="color: #BB0000; text-decoration: underline;">81</span> G1    CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AA… ../d… AACAAC… 1     BCB1… -<span style="color: #BB0000;">0.042</span><span style="color: #BB0000; text-decoration: underline;">1</span>   -<span style="color: #BB0000;">0.197</span>   G1    CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_AA… ../d… AACAAC… 1     BCB1… -<span style="color: #BB0000;">0.010</span><span style="color: #BB0000; text-decoration: underline;">5</span>   -<span style="color: #BB0000;">0.090</span><span style="color: #BB0000; text-decoration: underline;">2</span>  G1    CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_AA… ../d… AACACA… 1     BCB1… -<span style="color: #BB0000;">0.016</span><span style="color: #BB0000; text-decoration: underline;">4</span>   -<span style="color: #BB0000;">0.132</span>   G1    MAIT            </span>
+<span class="co">## <span style="color: #BCBCBC;">10</span> 1_AA… ../d… AACAGG… 1     BCB1… -<span style="color: #BB0000;">0.001</span><span style="color: #BB0000; text-decoration: underline;">58</span>  -<span style="color: #BB0000;">0.065</span><span style="color: #BB0000; text-decoration: underline;">2</span>  G1    NK_cells        </span>
+<span class="co">## <span style="color: #949494;"># … with 19,958 more rows, and 6 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
+<p>We can use <code>select</code> to choose columns, for example, to see the sample, cell, total cellular RNA</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.cell</span>, <span class="va">nCount_RNA</span>, <span class="va">Phase</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 5</span></span>
+<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
+<span class="co">##    .cell                nCount_RNA Phase  UMAP_1 UMAP_2</span>
+<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AAACCCACACGACGCT-1       <span style="text-decoration: underline;">1</span>673 G1    -<span style="color: #BB0000;">1.23</span>   -<span style="color: #BB0000;">2.95</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AAACGAACAAAGGCAC-1       <span style="text-decoration: underline;">1</span>485 S      2.56   -<span style="color: #BB0000;">2.99</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AAACGCTCATGAATAG-1       <span style="text-decoration: underline;">2</span>460 S     -<span style="color: #BB0000;">3.32</span>   -<span style="color: #BB0000;">3.84</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AAACGCTTCATTCATC-1       <span style="text-decoration: underline;">1</span>937 G1    -<span style="color: #BB0000;">0.065</span><span style="color: #BB0000; text-decoration: underline;">0</span> -<span style="color: #BB0000;">3.16</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AAACGCTTCTTGGATG-1       <span style="text-decoration: underline;">1</span>739 S      2.51   -<span style="color: #BB0000;">3.15</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AAAGAACCAACGGCTC-1       <span style="text-decoration: underline;">2</span>346 S     -<span style="color: #BB0000;">3.11</span>   -<span style="color: #BB0000;">0.166</span></span>
+<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AAAGGATTCCCGTTCA-1        763 S     -<span style="color: #BB0000;">3.50</span>   -<span style="color: #BB0000;">0.754</span></span>
+<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_AAAGGGCAGGCATTTC-1       <span style="text-decoration: underline;">2</span>001 S      1.54   -<span style="color: #BB0000;">2.10</span> </span>
+<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_AAAGGGCCAGAGATTA-1       <span style="text-decoration: underline;">1</span>907 S     -<span style="color: #BB0000;">3.20</span>   -<span style="color: #BB0000;">1.92</span> </span>
+<span class="co">## <span style="color: #BCBCBC;">10</span> 1_AAAGTCCAGTAACGAT-1       <span style="text-decoration: underline;">2</span>239 S     -<span style="color: #BB0000;">4.03</span>    0.347</span>
+<span class="co">## <span style="color: #949494;"># … with 36,673 more rows</span></span></code></pre>
+<p>We can use <code>mutate</code> to create a column. For example, we could create a new <code>ident_l</code> column that contains a lower-case version of <code>ident</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">seurat_obj</span> <span class="op"><a href="https://rdrr.io/pkg/tidyseurat/man/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>Phase_l<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">tolower</a></span><span class="op">(</span><span class="va">Phase</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/tidyseurat/man/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="co"># select columns to view    </span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Phase</span>, <span class="va">Phase_l</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## tidyseurat says: Key columns are missing. A data frame is returned for independent data analysis.</span></code></pre>
+<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 36,683 × 2</span></span>
+<span class="co">##    Phase Phase_l</span>
+<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="co">## <span style="color: #BCBCBC;"> 1</span> G1    g1     </span>
+<span class="co">## <span style="color: #BCBCBC;"> 2</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 3</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 4</span> G1    g1     </span>
+<span class="co">## <span style="color: #BCBCBC;"> 5</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 6</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 7</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 8</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;"> 9</span> S     s      </span>
+<span class="co">## <span style="color: #BCBCBC;">10</span> S     s      </span>
+<span class="co">## <span style="color: #949494;"># … with 36,673 more rows</span></span></code></pre>
+<p>We can add information (counts) for features (genes) as columns using <code>join_features</code>.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -210,7 +289,7 @@
   <span class="op">)</span> </code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 21</span></span>
 <span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
 <span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
 <span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1    CD4+_ribosome_r…</span>
 <span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S     CD4+_Tcm_S100A4…</span>
@@ -226,7 +305,8 @@
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, CD3D &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<p>We can use <code>join_features</code> with tidyverse <code>mutate</code> to create a column containing a signature score from genes of interest. Here we use a signature from <span class="citation">(Pizzolato et al. 2019)</span>.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -245,7 +325,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">select</a></span><span class="op">(</span><span class="va">signature_score</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 22</span></span>
 <span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
-<span class="co">##    cell  signature_score file  Barcode batch BCB    S.Score G2M.Score Phase</span>
+<span class="co">##    .cell signature_score file  Barcode batch BCB    S.Score G2M.Score Phase</span>
 <span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA…          0.165  ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1   </span>
 <span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA…          0.165  ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S    </span>
@@ -261,7 +341,8 @@
 <span class="co">## <span style="color: #949494;">#   nCount_RNA &lt;dbl&gt;, nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   CD3D &lt;dbl&gt;, TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<p>We can visualise using Seurat’s visualisation functions.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -278,83 +359,8 @@
   <span class="op">)</span> |&gt;
   
   <span class="fu">Seurat</span><span class="fu">::</span><span class="fu"><a href="https://satijalab.org/seurat/reference/FeaturePlot.html" class="external-link">FeaturePlot</a></span><span class="op">(</span>features <span class="op">=</span>  <span class="st">"signature_score"</span>, min.cutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> </code></pre></div>
-<p><img src="tidytranscriptomics_case_study_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p><img src="tidytranscriptomics_case_study_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
-  
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/join_features.html" class="external-link">join_features</a></span><span class="op">(</span>
-    features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"TRDC"</span>, <span class="st">"TRGC1"</span>, <span class="st">"TRGC2"</span>, <span class="st">"CD8A"</span>, <span class="st">"CD8B"</span><span class="op">)</span>,
-    shape <span class="op">=</span> <span class="st">"wide"</span>,
-    assay <span class="op">=</span> <span class="st">"SCT"</span>
-    
-  <span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>signature_score <span class="op">=</span>
-           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD3D</span> <span class="op">+</span> <span class="va">TRDC</span> <span class="op">+</span> <span class="va">TRGC1</span><span class="op">+</span> <span class="va">TRGC2</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span>
-           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">)</span> |&gt;
-
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span> gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span>
-    <span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, 
-    .size <span class="op">=</span> <span class="fl">0.1</span>, .color <span class="op">=</span><span class="va">signature_score</span> , gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_for_biocasia2021.html">gate_for_biocasia2021</a></span>
-  <span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 23</span></span>
-<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1    CD4+_ribosome_r…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S     CD4+_Tcm_S100A4…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.094<span style="text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.193</span>  S     CD8+_high_ribon…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AA… ../d… AAACGC… 1     BCB1… -<span style="color: #BB0000;">0.067</span><span style="color: #BB0000; text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.205</span>  G1    CD4+_ribosome_r…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.021<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.124</span>  S     CD4+_Tcm_S100A4…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AA… ../d… AAAGAA… 1     BCB1…  0.059<span style="text-decoration: underline;">8</span>    -<span style="color: #BB0000;">0.196</span>  S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AA… ../d… AAAGGA… 1     BCB1…  0.028<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.054</span><span style="color: #BB0000; text-decoration: underline;">0</span> S     CD8+_high_ribon…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.011<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.099</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.034<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.143</span>  S     CD8+_high_ribon…</span>
-<span class="co">## <span style="color: #BCBCBC;">10</span> 1_AA… ../d… AAAGTC… 1     BCB1…  0.042<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.183</span>  S     MAIT            </span>
-<span class="co">## <span style="color: #949494;"># … with 36,673 more rows, and 14 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, CD3D &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
-  
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/join_features.html" class="external-link">join_features</a></span><span class="op">(</span>
-    features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"TRDC"</span>, <span class="st">"TRGC1"</span>, <span class="st">"TRGC2"</span>, <span class="st">"CD8A"</span>, <span class="st">"CD8B"</span><span class="op">)</span>,
-    shape <span class="op">=</span> <span class="st">"wide"</span>,
-    assay <span class="op">=</span> <span class="st">"SCT"</span>
-    
-  <span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>signature_score <span class="op">=</span>
-           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD3D</span> <span class="op">+</span> <span class="va">TRDC</span> <span class="op">+</span> <span class="va">TRGC1</span><span class="op">+</span> <span class="va">TRGC2</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span>
-           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span> gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_for_biocasia2021.html">gate_for_biocasia2021</a></span> <span class="op">)</span><span class="op">)</span> |&gt; 
-  
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gate</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 1,156 × 23</span></span>
-<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAATGG… 1     BCB1… -<span style="color: #BB0000;">0.020</span><span style="color: #BB0000; text-decoration: underline;">7</span>    -<span style="color: #BB0000;">0.060</span><span style="color: #BB0000; text-decoration: underline;">2</span> G1    TCR_V_Delta_2   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AC… ../d… ACGATG… 1     BCB1…  0.039<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.086</span><span style="color: #BB0000; text-decoration: underline;">6</span> S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AC… ../d… ACGTAA… 1     BCB1… -<span style="color: #BB0000;">0.008</span><span style="color: #BB0000; text-decoration: underline;">69</span>   -<span style="color: #BB0000;">0.140</span>  G1    TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AG… ../d… AGCCAC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">07</span>   -<span style="color: #BB0000;">0.086</span><span style="color: #BB0000; text-decoration: underline;">0</span> G1    CD4+_ribosome_r…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AG… ../d… AGTAGT… 1     BCB1…  0.107     -<span style="color: #BB0000;">0.075</span><span style="color: #BB0000; text-decoration: underline;">3</span> S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AT… ../d… ATCACG… 1     BCB1…  0.010<span style="text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.109</span>  S     TCR_V_Delta_2   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AT… ../d… ATTCGT… 1     BCB1… -<span style="color: #BB0000;">0.027</span><span style="color: #BB0000; text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.033</span><span style="color: #BB0000; text-decoration: underline;">3</span> G1    TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_CA… ../d… CATCCA… 1     BCB1…  0.051<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.131</span>  S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_CC… ../d… CCACAA… 1     BCB1…  0.038<span style="text-decoration: underline;">2</span>    -<span style="color: #BB0000;">0.085</span><span style="color: #BB0000; text-decoration: underline;">9</span> S     NK_cells        </span>
-<span class="co">## <span style="color: #BCBCBC;">10</span> 1_CC… ../d… CCGAAC… 1     BCB1…  0.021<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #949494;"># … with 1,146 more rows, and 14 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, CD3D &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
+<p>We can also visualise and customise using the popular and powerful ggplot package.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
@@ -371,59 +377,53 @@
            <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span> |&gt;
   
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span> gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_for_biocasia2021.html">gate_for_biocasia2021</a></span><span class="op">)</span> <span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>signature_score <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">signature_score</span><span class="op">&gt;</span><span class="fl">0</span> <span class="op">~</span> <span class="va">signature_score</span><span class="op">)</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/ggplot2-methods.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, color <span class="op">=</span> <span class="va">signature_score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>shape<span class="op">=</span><span class="st">"."</span> <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/scale_colour_continuous_sequential.html" class="external-link">scale_color_continuous_sequential</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Blues"</span>, na.value <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="tidytranscriptomics_case_study_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p>We can interactively draw cell clusters of interest using the tidygate package.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gate</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> |&gt;
   
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span> nfeatures <span class="op">=</span> <span class="fl">100</span>, assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/join_features.html" class="external-link">join_features</a></span><span class="op">(</span>
+    features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"TRDC"</span>, <span class="st">"TRGC1"</span>, <span class="st">"TRGC2"</span>, <span class="st">"CD8A"</span>, <span class="st">"CD8B"</span><span class="op">)</span>,
+    shape <span class="op">=</span> <span class="st">"wide"</span>,
+    assay <span class="op">=</span> <span class="st">"SCT"</span>
+    
+  <span class="op">)</span> |&gt;
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>signature_score <span class="op">=</span>
+           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD3D</span> <span class="op">+</span> <span class="va">TRDC</span> <span class="op">+</span> <span class="va">TRGC1</span><span class="op">+</span> <span class="va">TRGC2</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span>
+           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span> |&gt;
 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/SplitObject.html" class="external-link">SplitObject</a></span><span class="op">(</span>split.by <span class="op">=</span> <span class="st">"file"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://rdrr.io/pkg/SeuratWrappers/man/RunFastMNN.html" class="external-link">RunFastMNN</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"mnn"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## Computing 2000 integration features</span></code></pre>
-<pre><code><span class="co">## Warning in (function (A, nv = 5, nu = nv, maxit = 1000, work = nv + 7, reorth =</span>
-<span class="co">## TRUE, : You're computing too large a percentage of total singular values, use a</span>
-<span class="co">## standard svd instead.</span></code></pre>
-<pre><code><span class="co">## Warning: Keys should be one or more alphanumeric characters followed by an</span>
-<span class="co">## underscore, setting key from mnn.reconstructed_ to mnnreconstructed_</span></code></pre>
-<pre><code><span class="co">## Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric</span>
-<span class="co">## To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'</span>
-<span class="co">## This message will be shown once per session</span></code></pre>
-<pre><code><span class="co">## 19:29:49 UMAP embedding parameters a = 0.9922 b = 1.112</span></code></pre>
-<pre><code><span class="co">## 19:29:49 Read 1156 rows and found 20 numeric columns</span></code></pre>
-<pre><code><span class="co">## 19:29:49 Using Annoy for neighbor search, n_neighbors = 30</span></code></pre>
-<pre><code><span class="co">## 19:29:49 Building Annoy index with metric = cosine, n_trees = 50</span></code></pre>
-<pre><code><span class="co">## 0%   10   20   30   40   50   60   70   80   90   100%</span></code></pre>
-<pre><code><span class="co">## [----|----|----|----|----|----|----|----|----|----|</span></code></pre>
-<pre><code><span class="co">## **************************************************|</span>
-<span class="co">## 19:29:49 Writing NN index file to temp file /tmp/RtmpDEDtMA/file3b881199a3a8</span>
-<span class="co">## 19:29:49 Searching Annoy index using 1 thread, search_k = 3000</span>
-<span class="co">## 19:29:49 Annoy recall = 100%</span>
-<span class="co">## 19:29:50 Commencing smooth kNN distance calibration using 1 thread</span>
-<span class="co">## 19:29:51 Initializing from normalized Laplacian + noise</span>
-<span class="co">## 19:29:51 Commencing optimization for 500 epochs, with 43680 positive edges</span>
-<span class="co">## 19:29:53 Optimization finished</span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 1,156 × 28</span></span>
-<span class="co">## <span style="color: #555555;"># Features=3000 | Active assay=RNA | Assays=RNA, SCT, mnn.reconstructed</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span>
+    <span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, 
+    .size <span class="op">=</span> <span class="fl">0.1</span>, .color <span class="op">=</span><span class="va">signature_score</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_seurat_obj.html">gate_seurat_obj</a></span>
+  <span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 23</span></span>
+<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
 <span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAATGG… 1     BCB1… -<span style="color: #BB0000;">0.020</span><span style="color: #BB0000; text-decoration: underline;">7</span>    -<span style="color: #BB0000;">0.060</span><span style="color: #BB0000; text-decoration: underline;">2</span> G1    TCR_V_Delta_2   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AC… ../d… ACGATG… 1     BCB1…  0.039<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.086</span><span style="color: #BB0000; text-decoration: underline;">6</span> S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AC… ../d… ACGTAA… 1     BCB1… -<span style="color: #BB0000;">0.008</span><span style="color: #BB0000; text-decoration: underline;">69</span>   -<span style="color: #BB0000;">0.140</span>  G1    TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AG… ../d… AGCCAC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">07</span>   -<span style="color: #BB0000;">0.086</span><span style="color: #BB0000; text-decoration: underline;">0</span> G1    CD4+_ribosome_r…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AG… ../d… AGTAGT… 1     BCB1…  0.107     -<span style="color: #BB0000;">0.075</span><span style="color: #BB0000; text-decoration: underline;">3</span> S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AT… ../d… ATCACG… 1     BCB1…  0.010<span style="text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.109</span>  S     TCR_V_Delta_2   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AT… ../d… ATTCGT… 1     BCB1… -<span style="color: #BB0000;">0.027</span><span style="color: #BB0000; text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.033</span><span style="color: #BB0000; text-decoration: underline;">3</span> G1    TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_CA… ../d… CATCCA… 1     BCB1…  0.051<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.131</span>  S     MAIT            </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_CC… ../d… CCACAA… 1     BCB1…  0.038<span style="text-decoration: underline;">2</span>    -<span style="color: #BB0000;">0.085</span><span style="color: #BB0000; text-decoration: underline;">9</span> S     NK_cells        </span>
-<span class="co">## <span style="color: #BCBCBC;">10</span> 1_CC… ../d… CCGAAC… 1     BCB1…  0.021<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #949494;"># … with 1,146 more rows, and 19 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAACCC… 1     BCB1… -<span style="color: #BB0000;">0.002</span><span style="color: #BB0000; text-decoration: underline;">77</span>   -<span style="color: #BB0000;">0.103</span>  G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AA… ../d… AAACGA… 1     BCB1…  0.062<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.097</span><span style="color: #BB0000; text-decoration: underline;">2</span> S     CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 3</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.094<span style="text-decoration: underline;">3</span>    -<span style="color: #BB0000;">0.193</span>  S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 4</span> 1_AA… ../d… AAACGC… 1     BCB1… -<span style="color: #BB0000;">0.067</span><span style="color: #BB0000; text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.205</span>  G1    CD4+_ribosome_r…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 5</span> 1_AA… ../d… AAACGC… 1     BCB1…  0.021<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.124</span>  S     CD4+_Tcm_S100A4…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 6</span> 1_AA… ../d… AAAGAA… 1     BCB1…  0.059<span style="text-decoration: underline;">8</span>    -<span style="color: #BB0000;">0.196</span>  S     MAIT            </span>
+<span class="co">## <span style="color: #BCBCBC;"> 7</span> 1_AA… ../d… AAAGGA… 1     BCB1…  0.028<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.054</span><span style="color: #BB0000; text-decoration: underline;">0</span> S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.011<span style="text-decoration: underline;">0</span>    -<span style="color: #BB0000;">0.099</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     MAIT            </span>
+<span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_AA… ../d… AAAGGG… 1     BCB1…  0.034<span style="text-decoration: underline;">1</span>    -<span style="color: #BB0000;">0.143</span>  S     CD8+_high_ribon…</span>
+<span class="co">## <span style="color: #BCBCBC;">10</span> 1_AA… ../d… AAAGTC… 1     BCB1…  0.042<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.183</span>  S     MAIT            </span>
+<span class="co">## <span style="color: #949494;"># … with 36,673 more rows, and 14 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, CD3D &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, mnn_1 &lt;dbl&gt;, mnn_2 &lt;dbl&gt;, mnn_3 &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   mnn_4 &lt;dbl&gt;, mnn_5 &lt;dbl&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
+<p>Filter for just these cells using tidyverse <code>filter</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -439,52 +439,12 @@
            <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span> |&gt;
   
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span> gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_for_biocasia2021.html">gate_for_biocasia2021</a></span><span class="op">)</span> <span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_seurat_obj.html">gate_seurat_obj</a></span><span class="op">)</span><span class="op">)</span> |&gt; 
   
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gate</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span> nfeatures <span class="op">=</span> <span class="fl">100</span>, assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt;
-
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/SplitObject.html" class="external-link">SplitObject</a></span><span class="op">(</span>split.by <span class="op">=</span> <span class="st">"file"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://rdrr.io/pkg/SeuratWrappers/man/RunFastMNN.html" class="external-link">RunFastMNN</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"mnn"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span> dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, reduction <span class="op">=</span> <span class="st">"mnn"</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span> resolution <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Computing 2000 integration features</span></code></pre>
-<pre><code><span class="co">## Warning in (function (A, nv = 5, nu = nv, maxit = 1000, work = nv + 7, reorth =</span>
-<span class="co">## TRUE, : You're computing too large a percentage of total singular values, use a</span>
-<span class="co">## standard svd instead.</span></code></pre>
-<pre><code><span class="co">## Warning: Keys should be one or more alphanumeric characters followed by an</span>
-<span class="co">## underscore, setting key from mnn.reconstructed_ to mnnreconstructed_</span></code></pre>
-<pre><code><span class="co">## 19:30:23 UMAP embedding parameters a = 0.9922 b = 1.112</span></code></pre>
-<pre><code><span class="co">## 19:30:23 Read 1156 rows and found 20 numeric columns</span></code></pre>
-<pre><code><span class="co">## 19:30:23 Using Annoy for neighbor search, n_neighbors = 30</span></code></pre>
-<pre><code><span class="co">## 19:30:23 Building Annoy index with metric = cosine, n_trees = 50</span></code></pre>
-<pre><code><span class="co">## 0%   10   20   30   40   50   60   70   80   90   100%</span></code></pre>
-<pre><code><span class="co">## [----|----|----|----|----|----|----|----|----|----|</span></code></pre>
-<pre><code><span class="co">## **************************************************|</span>
-<span class="co">## 19:30:23 Writing NN index file to temp file /tmp/RtmpDEDtMA/file3b887d202a1c</span>
-<span class="co">## 19:30:23 Searching Annoy index using 1 thread, search_k = 3000</span>
-<span class="co">## 19:30:23 Annoy recall = 100%</span>
-<span class="co">## 19:30:24 Commencing smooth kNN distance calibration using 1 thread</span>
-<span class="co">## 19:30:25 Initializing from normalized Laplacian + noise</span>
-<span class="co">## 19:30:25 Commencing optimization for 500 epochs, with 43680 positive edges</span>
-<span class="co">## 19:30:27 Optimization finished</span>
-<span class="co">## Computing nearest neighbor graph</span>
-<span class="co">## Computing SNN</span></code></pre>
-<pre><code><span class="co">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span>
-<span class="co">## </span>
-<span class="co">## Number of nodes: 1156</span>
-<span class="co">## Number of edges: 49247</span>
-<span class="co">## </span>
-<span class="co">## Running Louvain algorithm...</span>
-<span class="co">## Maximum modularity in 10 random starts: 0.7847</span>
-<span class="co">## Number of communities: 3</span>
-<span class="co">## Elapsed time: 0 seconds</span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 1,156 × 30</span></span>
-<span class="co">## <span style="color: #555555;"># Features=3000 | Active assay=RNA | Assays=RNA, SCT, mnn.reconstructed</span></span>
-<span class="co">##    cell  file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gate</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> </code></pre></div>
+<pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 1,156 × 23</span></span>
+<span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
+<span class="co">##    .cell file  Barcode batch BCB    S.Score G2M.Score Phase curated_cell_ty…</span>
 <span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
 <span class="co">## <span style="color: #BCBCBC;"> 1</span> 1_AA… ../d… AAATGG… 1     BCB1… -<span style="color: #BB0000;">0.020</span><span style="color: #BB0000; text-decoration: underline;">7</span>    -<span style="color: #BB0000;">0.060</span><span style="color: #BB0000; text-decoration: underline;">2</span> G1    TCR_V_Delta_2   </span>
 <span class="co">## <span style="color: #BCBCBC;"> 2</span> 1_AC… ../d… ACGATG… 1     BCB1…  0.039<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.086</span><span style="color: #BB0000; text-decoration: underline;">6</span> S     MAIT            </span>
@@ -496,197 +456,99 @@
 <span class="co">## <span style="color: #BCBCBC;"> 8</span> 1_CA… ../d… CATCCA… 1     BCB1…  0.051<span style="text-decoration: underline;">6</span>    -<span style="color: #BB0000;">0.131</span>  S     MAIT            </span>
 <span class="co">## <span style="color: #BCBCBC;"> 9</span> 1_CC… ../d… CCACAA… 1     BCB1…  0.038<span style="text-decoration: underline;">2</span>    -<span style="color: #BB0000;">0.085</span><span style="color: #BB0000; text-decoration: underline;">9</span> S     NK_cells        </span>
 <span class="co">## <span style="color: #BCBCBC;">10</span> 1_CC… ../d… CCGAAC… 1     BCB1…  0.021<span style="text-decoration: underline;">5</span>    -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">8</span> S     TCR_V_Delta_1   </span>
-<span class="co">## <span style="color: #949494;"># … with 1,146 more rows, and 21 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
+<span class="co">## <span style="color: #949494;"># … with 1,146 more rows, and 14 more variables: nCount_RNA &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, CD3D &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, RNA_snn_res.0.3 &lt;fct&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   seurat_clusters &lt;fct&gt;, mnn_1 &lt;dbl&gt;, mnn_2 &lt;dbl&gt;, mnn_3 &lt;dbl&gt;, mnn_4 &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   mnn_5 &lt;dbl&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Quality control</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat" class="external-link">Seurat</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v86</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/AnnotationDbi" class="external-link">AnnotationDbi</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scuttle</span><span class="op">)</span>
-<span class="va">pbmc</span> <span class="op">=</span> <span class="fu">ismb2021tidytranscriptomics</span><span class="fu">::</span><span class="va">pbmc</span> |&gt; <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/as.Seurat.html" class="external-link">as.Seurat</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">pbmc</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidyseurat" class="external-link">tidyseurat</a></span><span class="op">)</span>
-
-<span class="va">pbmc</span>
-
-<span class="va">pbmc</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">nest</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="op">-</span><span class="va">file</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="sc">|&gt;</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">seurat =</span> <span class="sc">-</span>file) <span class="sc">|&gt;</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mitochondrion_info =</span> <span class="fu">map</span>(</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    seurat,</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>  .x <span class="sc">|&gt;</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">GetAssayData</span>(<span class="at">slot =</span> <span class="st">"counts"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>        <span class="er">&lt;</span>CODE FOR MITOCHONDRION STATISTICS<span class="sc">&gt;</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join information to seurat object</span></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seurat =</span> <span class="fu">map2</span>(seurat, mitochondrion_info, <span class="sc">~</span> <span class="fu">left_join</span>(.x, .y))) <span class="sc">|&gt;</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Unnest to a unique seurat object</span></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(file, seurat) <span class="sc">|&gt;</span> </span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(seurat) <span class="sc">|&gt;</span></span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter alive cells</span></span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>high_mitochondrion)</span></code></pre></div>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-<span class="va">pbmc</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">nest</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="op">-</span><span class="va">file</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>mitochondrion_info <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
-    <span class="va">seurat</span>,
-    <span class="op">~</span> <span class="op">{</span>
-      
-      <span class="co"># Get mitochondrion</span>
-      <span class="va">location</span> <span class="op">&lt;-</span> <span class="fu">AnnotationDbi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">mapIds</a></span><span class="op">(</span>
-        <span class="va">EnsDb.Hsapiens.v86</span>,
-        keys <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>,
-        column <span class="op">=</span> <span class="st">"SEQNAME"</span>,
-        keytype <span class="op">=</span> <span class="st">"SYMBOL"</span>
-      <span class="op">)</span>
-      
-      <span class="co"># Metrics</span>
-      <span class="va">.x</span> |&gt;
-        <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/AssayData.html" class="external-link">GetAssayData</a></span><span class="op">(</span>slot <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span> |&gt;
-        <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/perCellQCMetrics.html" class="external-link">perCellQCMetrics</a></span><span class="op">(</span>subsets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Mito <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">location</span> <span class="op">==</span> <span class="st">"MT"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tibble-methods.html" class="external-link">as_tibble</a></span><span class="op">(</span>rownames <span class="op">=</span> <span class="st">"cell"</span><span class="op">)</span> |&gt;
-
-        <span class="co"># Label cells with high mitochondrial content</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>high_mitochondrion <span class="op">=</span> <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/isOutlier.html" class="external-link">isOutlier</a></span><span class="op">(</span><span class="va">subsets_Mito_percent</span>, type <span class="op">=</span> <span class="st">"higher"</span><span class="op">)</span><span class="op">)</span>
-    <span class="op">}</span>
-  <span class="op">)</span><span class="op">)</span></code></pre>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-<span class="va">pbmc</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">nest</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="op">-</span><span class="va">file</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>mitochondrion_info <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
-    <span class="va">seurat</span>,
-    <span class="op">~</span> <span class="op">{</span>
-      
-      <span class="co"># Get mitochondrion</span>
-      <span class="va">location</span> <span class="op">&lt;-</span> <span class="fu">AnnotationDbi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">mapIds</a></span><span class="op">(</span>
-        <span class="va">EnsDb.Hsapiens.v86</span>,
-        keys <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>,
-        column <span class="op">=</span> <span class="st">"SEQNAME"</span>,
-        keytype <span class="op">=</span> <span class="st">"SYMBOL"</span>
-      <span class="op">)</span>
-      
-      <span class="co"># Metrics</span>
-      <span class="va">.x</span> |&gt;
-        <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/AssayData.html" class="external-link">GetAssayData</a></span><span class="op">(</span>slot <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span> |&gt;
-        <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/perCellQCMetrics.html" class="external-link">perCellQCMetrics</a></span><span class="op">(</span>subsets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Mito <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">location</span> <span class="op">==</span> <span class="st">"MT"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tibble-methods.html" class="external-link">as_tibble</a></span><span class="op">(</span>rownames <span class="op">=</span> <span class="st">"cell"</span><span class="op">)</span> |&gt;
-
-        <span class="co"># Label cells with high mitochondrial content</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>high_mitochondrion <span class="op">=</span> <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/isOutlier.html" class="external-link">isOutlier</a></span><span class="op">(</span><span class="va">subsets_Mito_percent</span>, type <span class="op">=</span> <span class="st">"higher"</span><span class="op">)</span><span class="op">)</span>
-    <span class="op">}</span>
-  <span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span><span class="va">seurat</span>, <span class="va">mitochondrion_info</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">select</a></span><span class="op">(</span><span class="va">file</span>, <span class="va">seurat</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">seurat</span><span class="op">)</span></code></pre>
-<pre><code><span class="op">{</span><span class="va">r</span><span class="op">}</span>
-<span class="va">pbmc</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">nest</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="op">-</span><span class="va">file</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>mitochondrion_info <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
-    <span class="va">seurat</span>,
-    <span class="op">~</span> <span class="op">{</span>
-      
-      <span class="co"># Get mitochondrion</span>
-      <span class="va">location</span> <span class="op">&lt;-</span> <span class="fu">AnnotationDbi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">mapIds</a></span><span class="op">(</span>
-        <span class="va">EnsDb.Hsapiens.v86</span>,
-        keys <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>,
-        column <span class="op">=</span> <span class="st">"SEQNAME"</span>,
-        keytype <span class="op">=</span> <span class="st">"SYMBOL"</span>
-      <span class="op">)</span>
-      
-      <span class="co"># Metrics</span>
-      <span class="va">.x</span> |&gt;
-        <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/AssayData.html" class="external-link">GetAssayData</a></span><span class="op">(</span>slot <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span> |&gt;
-        <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/perCellQCMetrics.html" class="external-link">perCellQCMetrics</a></span><span class="op">(</span>subsets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Mito <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">location</span> <span class="op">==</span> <span class="st">"MT"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tibble-methods.html" class="external-link">as_tibble</a></span><span class="op">(</span>rownames <span class="op">=</span> <span class="st">"cell"</span><span class="op">)</span> |&gt;
-
-        <span class="co"># Label cells with high mitochondrial content</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>high_mitochondrion <span class="op">=</span> <span class="fu">scuttle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/isOutlier.html" class="external-link">isOutlier</a></span><span class="op">(</span><span class="va">subsets_Mito_percent</span>, type <span class="op">=</span> <span class="st">"higher"</span><span class="op">)</span><span class="op">)</span>
-    <span class="op">}</span>
-  <span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>seurat <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span><span class="va">seurat</span>, <span class="va">mitochondrion_info</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html" class="external-link">select</a></span><span class="op">(</span><span class="va">file</span>, <span class="va">seurat</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/tidyr-methods.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">seurat</span><span class="op">)</span> |&gt;
+<span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
+<p>And perform analyses on these cells by simply chaining the commands, such as below.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">high_mitochondrion</span><span class="op">)</span></code></pre>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># gamma_delta_df = </span>
-<span class="co">#   readRDS("cancer_only_analyses/integrated_counts_curated.rds")  |&gt; </span>
-<span class="co">#   #   {.x = (.); DefaultAssay(.x) = "RNA"; .x} |&gt; </span>
-<span class="co">#   filter(curated_cell_type_pretty %in% c("T gd1",  "T gd2")) |&gt; </span>
-<span class="co">#   </span>
-<span class="co">#   {</span>
-<span class="co">#     .x= (.)</span>
-<span class="co">#     DefaultAssay(.x) = "RNA"</span>
-<span class="co">#     .x[["SCT"]] = NULL</span>
-<span class="co">#     .x[["integrated"]] = NULL</span>
-<span class="co">#     .x</span>
-<span class="co">#   } |&gt; </span>
-<span class="co">#   NormalizeData() |&gt; </span>
-<span class="co">#   FindVariableFeatures( nfeatures = 100) |&gt; </span>
-<span class="co">#   mutate(batch_to_eliminate = sample) |&gt; </span>
-<span class="co">#   nest(data = -batch_to_eliminate) |&gt;</span>
-<span class="co">#   pull(data) |&gt; </span>
-<span class="co">#   RunFastMNN() |&gt; </span>
-<span class="co">#   RunUMAP(reduction = "mnn", dims = 1:20) |&gt; </span>
-<span class="co">#   FindNeighbors( dims = 1:20, reduction = "mnn") |&gt; </span>
-<span class="co">#   FindClusters( resolution = 0.3) |&gt;</span>
-<span class="co">#   mutate(gate = tidygate::gate_int(UMAP_1, UMAP_2, how_many_gates = 2, gate_list = readRDS("file66175abbca44.rds"))) |&gt; </span>
-<span class="co">#   tidysc::adjust_abundance(~ 1) |&gt;</span>
-<span class="co">#   mutate(gamma_delta = case_when(</span>
-<span class="co">#     gate == 0 ~ "T gd vd2",</span>
-<span class="co">#     gate == 1 ~ "T gd vd1 LGALS1",</span>
-<span class="co">#     gate == 2 ~ "T gd vd1",</span>
-<span class="co">#   ))</span></code></pre></div>
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/join_features.html" class="external-link">join_features</a></span><span class="op">(</span>
+    features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CD3D"</span>, <span class="st">"TRDC"</span>, <span class="st">"TRGC1"</span>, <span class="st">"TRGC2"</span>, <span class="st">"CD8A"</span>, <span class="st">"CD8B"</span><span class="op">)</span>,
+    shape <span class="op">=</span> <span class="st">"wide"</span>,
+    assay <span class="op">=</span> <span class="st">"SCT"</span>
+    
+  <span class="op">)</span> |&gt;
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>signature_score <span class="op">=</span>
+           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD3D</span> <span class="op">+</span> <span class="va">TRDC</span> <span class="op">+</span> <span class="va">TRGC1</span><span class="op">+</span> <span class="va">TRGC2</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span>
+           <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">rescale</a></span><span class="op">(</span><span class="va">CD8A</span> <span class="op">+</span> <span class="va">CD8B</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span> |&gt;
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span> gate <span class="op">=</span> <span class="fu">tidygate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidygate/man/gate_chr-methods.html" class="external-link">gate_int</a></span><span class="op">(</span><span class="va">UMAP_1</span>, <span class="va">UMAP_2</span>, gate_list <span class="op">=</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/gate_seurat_obj.html">gate_seurat_obj</a></span><span class="op">)</span> <span class="op">)</span> |&gt; 
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gate</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> |&gt;
+  
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/NormalizeData.html" class="external-link">NormalizeData</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span> nfeatures <span class="op">=</span> <span class="fl">100</span>, assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt;
+
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/SplitObject.html" class="external-link">SplitObject</a></span><span class="op">(</span>split.by <span class="op">=</span> <span class="st">"file"</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://rdrr.io/pkg/SeuratWrappers/man/RunFastMNN.html" class="external-link">RunFastMNN</a></span><span class="op">(</span>assay<span class="op">=</span><span class="st">"RNA"</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span>reduction <span class="op">=</span> <span class="st">"mnn"</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span> dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, reduction <span class="op">=</span> <span class="st">"mnn"</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span> resolution <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
+<p>TODO: add plotly example, need UMAP3</p>
 <p>And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">=</span> iscb2021tidytranscriptomics<span class="sc">::</span>pbmc</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySingleCellExperiment)</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(batchelor)</span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>pbmc <span class="sc">|&gt;</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define batch</span></span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>file) <span class="sc">|&gt;</span></span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalisation</span></span>
-<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">multiBatchNorm</span>(data)) <span class="sc">|&gt;</span></span>
-<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Integration</span></span>
-<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fastMNN</span>() <span class="sc">|&gt;</span></span>
-<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join old information</span></span>
-<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pbmc <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dimred=</span><span class="st">"corrected"</span>) <span class="sc">|&gt;</span> <span class="co"># from scater|&gt;</span></span>
-<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>  seurat_obj <span class="sc">|&gt;</span></span>
-<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dims=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(</span>
-<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP1</span><span class="st">`</span>,</span>
-<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP2</span><span class="st">`</span>,</span>
-<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP3</span><span class="st">`</span>,</span>
-<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> friendly_cols[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],</span>
-<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="sc">~</span>label,</span>
-<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span></span>
-<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">=</span> iscb2021tidytranscriptomics<span class="sc">::</span>pbmc</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>pbmc <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define batch</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>file) <span class="sc">|&gt;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalisation</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">multiBatchNorm</span>(data)) <span class="sc">|&gt;</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Integration</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fastMNN</span>() <span class="sc">|&gt;</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join old information</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pbmc <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dimred=</span><span class="st">"corrected"</span>) <span class="sc">|&gt;</span> <span class="co"># from scater|&gt;</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  seurat_obj <span class="sc">|&gt;</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dims=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP1</span><span class="st">`</span>,</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP2</span><span class="st">`</span>,</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP3</span><span class="st">`</span>,</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> friendly_cols[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="sc">~</span>label,</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-butler2018integrating" class="csl-entry">
+Butler, Andrew, Paul Hoffman, Peter Smibert, Efthymia Papalexi, and Rahul Satija. 2018. <span>“Integrating Single-Cell Transcriptomic Data Across Different Conditions, Technologies, and Species.”</span> <em>Nature Biotechnology</em> 36 (5): 411–20.
+</div>
+<div id="ref-Pizzolato2019" class="csl-entry">
+Pizzolato, Gabriele, Hannah Kaminski, Marie Tosolini, Don-Marc Franchini, Fréderic Pont, Fréderic Martins, Carine Valle, et al. 2019. <span>“Single-Cell <span>RNA</span> Sequencing Unveils the Shared and the Distinct Cytotoxic Hallmarks of Human <span>TCRV</span><span class="math inline">\(\updelta\)</span>1 and <span>TCRV</span><span class="math inline">\(\updelta\)</span>2 <span class="math inline">\(\upgamma\)</span><span class="math inline">\(\updelta\)</span> t Lymphocytes.”</span> <em>Proceedings of the National Academy of Sciences</em>, May, 201818488. <a href="https://doi.org/10.1073/pnas.1818488116" class="external-link">https://doi.org/10.1073/pnas.1818488116</a>.
+</div>
+<div id="ref-stuart2019comprehensive" class="csl-entry">
+Stuart, Tim, Andrew Butler, Paul Hoffman, Christoph Hafemeister, Efthymia Papalexi, William M Mauck III, Yuhan Hao, Marlon Stoeckius, Peter Smibert, and Rahul Satija. 2019. <span>“Comprehensive Integration of Single-Cell Data.”</span> <em>Cell</em> 177 (7): 1888–1902.
+</div>
+<div id="ref-wickham2019welcome" class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the Tidyverse.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686.
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>&lt;maria.doyle at petermac.org&gt;<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>&lt;mangiola.s at wehi.edu.au&gt;<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
