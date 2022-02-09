@@ -1,8 +1,14 @@
 ---
-title: "use_cases_BioCAsia2021"
-author: "Stefano Mangiola"
-date: "10/28/2021"
-output: html_document
+title: "Tidy Transcriptomics case study"
+author:
+  - Maria Doyle, Peter MacCallum Cancer Centre^[<maria.doyle at petermac.org>]
+  - Stefano Mangiola, Walter and Eliza Hall Institute^[<mangiola.s at wehi.edu.au>]
+output: rmarkdown::html_vignette
+bibliography: "`r file.path(system.file(package='iscb2022tidytranscriptomics', 'vignettes'), 'tidytranscriptomics.bib')`"
+vignette: >
+  %\VignetteIndexEntry{Introduction to Tidy Transcriptomics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
@@ -18,82 +24,107 @@ library(SeuratWrappers)
 ```
 
 
+## Introduction to tidyseurat
 
+Seurat is a very popular analysis toolkit for single cell RNA sequencing data [@butler2018integrating; @stuart2019comprehensive] .
+
+Here we load single-cell data in Seurat object format. This data is peripheral blood mononuclear cells (PBMCs) from metastatic breast cancer patients.
 
 ```{r}
-library(tidyseurat)
+# load single cell RNA sequencing data
 seurat_obj <- iscb2022tidytranscriptomics::seurat_obj
+
+# take a look
+options("restore_Seurat_show" = TRUE)
+seurat_obj
 ```
+tidyseurat provides a bridge between the Seurat single-cell package [@butler2018integrating; @stuart2019comprehensive] and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the
+Seurat object as a tidyverse tibble, and provides Seurat-compatible *dplyr*, *tidyr*, *ggplot* and *plotly* functions.
 
-```
-{r}
-# Subsampling
-
-single_cell_data |>
-  add_count(sample, name = "tot_cells") |>
-  mutate(median_cells = min(tot_cells)) |>
-  nest(data = -c(sample, median_cells)) |>
-  mutate(data = map2(data, median_cells, ~ sample_n(.x, .y, replace = TRUE))) |>
-  unnest(data)
-```
-
-```
-{r}
-
-# Define cell categories for analysis plotting
-
-single_cell_data |>
-  
-  mutate(cell_differentiation = 
-           case_when(
-             curated_cell_type_pretty %in% c("B immature", "B mem") ~ "B",
-             curated_cell_type_pretty %in% c("pDC") ~ "pDC",
-             cell_differentiation == "lymphoid" ~ "T+NK",
-             cell_differentiation == "myeloid" ~ "Myeloid"
-           )
-  ) |> 
-  
-  mutate(
-    curated_cell_type_pretty = if_else(
-      curated_cell_type_pretty %in% c("T gd1",  "T gd2"), 
-      "gamma_delta" , 
-      curated_cell_type_pretty
-    )
-  ) 
-```
-
-```
-{r}
-
-seurat_obj <- readRDS("/stornext/Bioinf/data/bioinf-data/Papenfuss_lab/projects/mangiola.s/PostDoc/oligo_breast/expanded_analyses_with_control/cancer_only_analyses/lymphoid/cancer_lymphoid_cell_type_curated.rds")
-
-
-seurat_obj = seurat_obj |> RunPCA() |> select(-contains("UMAP")) |> RunUMAP(dims=1:20)
-seurat_obj = seurat_obj |> select(cell, file, 3, 8, 9,S.Score, G2M.Score , Phase , curated_cell_type , contains("UMAP"))
-
-seurat_obj |>
-  saveRDS("dev/seurat_obj_for_BioCAsia2021.rds")
-
-
-```
-
-
-```{r}
-options("restore_Seurat_show" = TRUE) 
-```
-
-
-```{r}
-seurat_obj 
-```
-```{r}
-options("restore_Seurat_show" = FALSE) 
-```
+If we load the *tidyseurat* package and then view the single cell data, it now displays as a tibble.
 
 ```{r}
 library(tidyseurat)
+
 seurat_obj 
 ```
+
+
+It can be interacted with using [Seurat commands](https://satijalab.org/seurat/articles/essential_commands.html) such as `Assays`.
+
+```{r}
+Assays(seurat_obj)
+```
+
+We can also interact with our object as we do with any tidyverse tibble.
+
+### Tidyverse commands
+
+We can interact with this object in the same way we showed for `tidySingleCellExperiment`, through the tidy paradigm.
+
+```{r}
+# Filter
+seurat_obj %>% filter(groups == "g1")
+
+# Select
+seurat_obj %>% select(cell, nCount_RNA , groups)
+
+# Mutate
+seurat_obj %>%
+  mutate(groups_l=tolower(groups)) %>%
+  # select columns to view    
+  select(groups, groups_l)
+
+# Bind datasets
+seurat_obj %>% bind_rows(pbmc_seurat)
+```
+
+
+This tidy SingleCellExperiment object can be interacted with using [SingleCellExperiment commands](https://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) such as `assayNames`.
+
+```{r}
+assayNames(pbmc)
+```
+
+We can also interact with our object as we do with any tidyverse tibble.
+
+### Tidyverse commands
+
+We can use tidyverse commands, such as `filter`, `select` and `mutate` to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website [here](https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1). 
+
+We can use `filter` to choose rows, for example, to see just the rows for the cells in G1 cell-cycle stage. Check if have groups or ident present.
+
+```{r}
+seurat_obj |> filter(ident == "G1")
+```
+
+We can use `select` to choose columns, for example, to see the sample, cell, total cellular RNA
+
+```{r}
+seurat_obj %>% select(cell, nCount_RNA, ident)
+```
+
+We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`. 
+
+```{r}
+seurat_obj %>%
+  mutate(ident_l=tolower(ident)) %>%
+  # select columns to view    
+  select(ident, ident_l)
+```
+
+
+### Join datasets
+
+We can join datasets as if they were tibbles.
+
+```{r}
+seurat_obj %>% bind_rows(seurat_obj)
+```
+
+
+We can add information (counts) for features (genes) as columns using `join_features`.
+
 
 ```{r}
 
@@ -106,6 +137,8 @@ seurat_obj |>
     assay = "SCT"
   ) 
 ```
+
+We can use `join_features` with tidyverse `mutate` to create a column containing a signature score from genes of interest.
 
 ```{r}
 
@@ -127,7 +160,7 @@ seurat_obj |>
   select(signature_score, everything())
 ```
 
-
+We can visualise using Seurat's visualisaiton functions. 
 
 ```{r}
 
@@ -149,7 +182,9 @@ seurat_obj |>
   Seurat::FeaturePlot(features =  "signature_score", min.cutoff = 0) 
 ```
 
-```{r echo=FALSE}
+We can also visualise and customise using the popular and powerful ggplot package.
+
+```{r}
 
 seurat_obj |>
   
@@ -173,6 +208,8 @@ seurat_obj |>
   theme_bw()
 ```
 
+We can interactively draw cell clusters of interest using the tidygate package.
+
 ```{r}
 
 seurat_obj |>
@@ -190,12 +227,14 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
 
-  mutate( gate = tidygate::gate_int(
+  mutate(gate = tidygate::gate_int(
     UMAP_1, UMAP_2, 
-    .size = 0.1, .color =signature_score , gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021
+    .size = 0.1, .color =signature_score, gate_list = iscb2022tidytranscriptomics::gate_seurat_obj
   ))
 ```
 
+Filter for just these cells using tidyverse `filter`.
+
 ```{r}
 
 seurat_obj |>
@@ -213,12 +252,14 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021 )) |> 
+  mutate(gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_seurat_obj)) |> 
   
   filter(gate == 1) 
 ```
 
-```{r}
+And perform analyses on these cells by simply chaining the commands, such as below.
+
+```{r eval = FALSE}
 
 seurat_obj |>
   
@@ -235,36 +276,7 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021) ) |> 
-  
-  filter(gate == 1) |>
-  
-  NormalizeData(assay="RNA") |> 
-  FindVariableFeatures( nfeatures = 100, assay="RNA") |>
-
-  SplitObject(split.by = "file") |> 
-  RunFastMNN(assay="RNA") |> 
-  RunUMAP(reduction = "mnn", dims = 1:20) 
-```
-
-```{r}
-
-seurat_obj |>
-  
-  
-  join_features(
-    features = c("CD3D", "TRDC", "TRGC1", "TRGC2", "CD8A", "CD8B"),
-    shape = "wide",
-    assay = "SCT"
-    
-  ) |>
-  
-  mutate(signature_score =
-           scales::rescale(CD3D + TRDC + TRGC1+ TRGC2, to=c(0,1)) -
-           scales::rescale(CD8A + CD8B, to=c(0,1))
-  ) |>
-  
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_for_biocasia2021) ) |> 
+  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_seurat_obj) ) |> 
   
   filter(gate == 1) |>
   
@@ -278,190 +290,13 @@ seurat_obj |>
   FindClusters( resolution = 0.3)
 ```
 
-```{r eval = FALSE}
 
-# Quality control
-library(Seurat)
-library(purrr)
-library(tidyverse)
-library(EnsDb.Hsapiens.v86)
-library(AnnotationDbi)
-library(scuttle)
-pbmc = ismb2021tidytranscriptomics::pbmc |> as.Seurat()
-
-pbmc
-
-library(tidyseurat)
-
-pbmc
-
-pbmc |>
-  nest(seurat = -file) 
-```
-
-
-```{r eval=FALSE}
-pbmc |>
-  nest(seurat = -file) |>
-  mutate(mitochondrion_info = map(
-    seurat,
-    ~  .x |>
-        GetAssayData(slot = "counts") |>
-        <CODE FOR MITOCHONDRION STATISTICS>
-  )) |>
-  
-  # Join information to seurat object
-  mutate(seurat = map2(seurat, mitochondrion_info, ~ left_join(.x, .y))) |>
-  
-  # Unnest to a unique seurat object
-  select(file, seurat) |> 
-  unnest(seurat) |>
-  
-  # Filter alive cells
-  filter(!high_mitochondrion)
-  
-```
-
-```
-{r}
-pbmc |>
-  nest(seurat = -file) |>
-  mutate(mitochondrion_info = map(
-    seurat,
-    ~ {
-      
-      # Get mitochondrion
-      location <- AnnotationDbi::mapIds(
-        EnsDb.Hsapiens.v86,
-        keys = rownames(.x),
-        column = "SEQNAME",
-        keytype = "SYMBOL"
-      )
-      
-      # Metrics
-      .x |>
-        GetAssayData(slot = "counts") |>
-        scuttle::perCellQCMetrics(subsets = list(Mito = which(location == "MT"))) |>
-        as_tibble(rownames = "cell") |>
-
-        # Label cells with high mitochondrial content
-        mutate(high_mitochondrion = scuttle::isOutlier(subsets_Mito_percent, type = "higher"))
-    }
-  )) 
-  
-
-```
-
-```
-{r}
-pbmc |>
-  nest(seurat = -file) |>
-  mutate(mitochondrion_info = map(
-    seurat,
-    ~ {
-      
-      # Get mitochondrion
-      location <- AnnotationDbi::mapIds(
-        EnsDb.Hsapiens.v86,
-        keys = rownames(.x),
-        column = "SEQNAME",
-        keytype = "SYMBOL"
-      )
-      
-      # Metrics
-      .x |>
-        GetAssayData(slot = "counts") |>
-        scuttle::perCellQCMetrics(subsets = list(Mito = which(location == "MT"))) |>
-        as_tibble(rownames = "cell") |>
-
-        # Label cells with high mitochondrial content
-        mutate(high_mitochondrion = scuttle::isOutlier(subsets_Mito_percent, type = "higher"))
-    }
-  )) |>
-  mutate(seurat = map2(seurat, mitochondrion_info, ~ left_join(.x, .y))) |>
-  select(file, seurat) |> 
-  unnest(seurat)
-  
-
-```
-
-
-```
-{r}
-pbmc |>
-  nest(seurat = -file) |>
-  mutate(mitochondrion_info = map(
-    seurat,
-    ~ {
-      
-      # Get mitochondrion
-      location <- AnnotationDbi::mapIds(
-        EnsDb.Hsapiens.v86,
-        keys = rownames(.x),
-        column = "SEQNAME",
-        keytype = "SYMBOL"
-      )
-      
-      # Metrics
-      .x |>
-        GetAssayData(slot = "counts") |>
-        scuttle::perCellQCMetrics(subsets = list(Mito = which(location == "MT"))) |>
-        as_tibble(rownames = "cell") |>
-
-        # Label cells with high mitochondrial content
-        mutate(high_mitochondrion = scuttle::isOutlier(subsets_Mito_percent, type = "higher"))
-    }
-  )) |>
-  mutate(seurat = map2(seurat, mitochondrion_info, ~ left_join(.x, .y))) |>
-  select(file, seurat) |> 
-  unnest(seurat) |>
-  
-  filter(!high_mitochondrion)
-  
-
-```
-
-
-
-```{r}
-
-# gamma_delta_df = 
-#   readRDS("cancer_only_analyses/integrated_counts_curated.rds")  |> 
-#   #	{.x = (.); DefaultAssay(.x) = "RNA"; .x} |> 
-#   filter(curated_cell_type_pretty %in% c("T gd1",  "T gd2")) |> 
-#   
-#   {
-#     .x= (.)
-#     DefaultAssay(.x) = "RNA"
-#     .x[["SCT"]] = NULL
-#     .x[["integrated"]] = NULL
-#     .x
-#   } |> 
-#   NormalizeData() |> 
-#   FindVariableFeatures( nfeatures = 100) |> 
-#   mutate(batch_to_eliminate = sample) |> 
-#   nest(data = -batch_to_eliminate) |>
-#   pull(data) |> 
-#   RunFastMNN() |> 
-#   RunUMAP(reduction = "mnn", dims = 1:20) |> 
-#   FindNeighbors( dims = 1:20, reduction = "mnn") |> 
-#   FindClusters( resolution = 0.3) |>
-#   mutate(gate = tidygate::gate_int(UMAP_1, UMAP_2, how_many_gates = 2, gate_list = readRDS("file66175abbca44.rds"))) |> 
-#   tidysc::adjust_abundance(~ 1) |>
-#   mutate(gamma_delta = case_when(
-#     gate == 0 ~ "T gd vd2",
-#     gate == 1 ~ "T gd vd1 LGALS1",
-#     gate == 2 ~ "T gd vd1",
-#   ))
-```
+TODO: add plotly example, need UMAP3
 
 And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
 
 ```{r umap plot 2, eval=FALSE}
 pbmc = iscb2021tidytranscriptomics::pbmc
-library(scater)
-library(tidySingleCellExperiment)
-library(batchelor)
 
 pbmc |>
 
