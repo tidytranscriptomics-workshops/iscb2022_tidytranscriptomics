@@ -35,7 +35,6 @@ Here we load single-cell data in Seurat object format. This data is peripheral b
 seurat_obj <- iscb2022tidytranscriptomics::seurat_obj
 
 # take a look
-options("restore_Seurat_show" = TRUE)
 seurat_obj
 ```
 tidyseurat provides a bridge between the Seurat single-cell package [@butler2018integrating; @stuart2019comprehensive] and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the
@@ -58,35 +57,6 @@ Assays(seurat_obj)
 
 We can also interact with our object as we do with any tidyverse tibble.
 
-### Tidyverse commands
-
-We can interact with this object in the same way we showed for `tidySingleCellExperiment`, through the tidy paradigm.
-
-```{r}
-# Filter
-seurat_obj %>% filter(groups == "g1")
-
-# Select
-seurat_obj %>% select(cell, nCount_RNA , groups)
-
-# Mutate
-seurat_obj %>%
-  mutate(groups_l=tolower(groups)) %>%
-  # select columns to view    
-  select(groups, groups_l)
-
-# Bind datasets
-seurat_obj %>% bind_rows(pbmc_seurat)
-```
-
-
-This tidy SingleCellExperiment object can be interacted with using [SingleCellExperiment commands](https://bioconductor.org/packages/release/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html) such as `assayNames`.
-
-```{r}
-assayNames(pbmc)
-```
-
-We can also interact with our object as we do with any tidyverse tibble.
 
 ### Tidyverse commands
 
@@ -95,32 +65,24 @@ We can use tidyverse commands, such as `filter`, `select` and `mutate` to explor
 We can use `filter` to choose rows, for example, to see just the rows for the cells in G1 cell-cycle stage. Check if have groups or ident present.
 
 ```{r}
-seurat_obj |> filter(ident == "G1")
+seurat_obj |> filter(Phase == "G1")
 ```
 
 We can use `select` to choose columns, for example, to see the sample, cell, total cellular RNA
 
 ```{r}
-seurat_obj %>% select(cell, nCount_RNA, ident)
+seurat_obj |> select(.cell, nCount_RNA, Phase)
 ```
 
 We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`. 
 
 ```{r}
 seurat_obj %>%
-  mutate(ident_l=tolower(ident)) %>%
+  mutate(Phase_l=tolower(Phase)) %>%
   # select columns to view    
-  select(ident, ident_l)
+  select(Phase, Phase_l)
 ```
 
-
-### Join datasets
-
-We can join datasets as if they were tibbles.
-
-```{r}
-seurat_obj %>% bind_rows(seurat_obj)
-```
 
 
 We can add information (counts) for features (genes) as columns using `join_features`.
@@ -160,7 +122,7 @@ seurat_obj |>
   select(signature_score, everything())
 ```
 
-We can visualise using Seurat's visualisaiton functions. 
+We can visualise using Seurat's visualisation functions. 
 
 ```{r}
 
