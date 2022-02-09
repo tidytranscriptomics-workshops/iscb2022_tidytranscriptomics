@@ -15,6 +15,35 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Instructors
+
+*Dr. Stefano Mangiola* is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.
+
+*Dr. Maria Doyle* is the Application and Training Specialist for Research Computing at the Peter MacCallum Cancer Centre in Melbourne, Australia. She has a PhD in Molecular Biology and currently works in bioinformatics and data science education and training. She is passionate about supporting researchers, reproducible research, open source and tidy data.
+
+## Workshop goals and objectives
+
+This workshop will demonstrate a real-world example of using tidy transcriptomics packages, such as tidyseurat, to perform a single cell analysis.
+
+This workshop is not a step-by-step introduction in how to perform single-cell analysis. For an overview of single-cell analysis steps performed in a tidy way please see the [ISMB2021 workshop](https://tidytranscriptomics-workshops.github.io/ismb2021_tidytranscriptomics/articles/tidytranscriptomics.html).
+
+## Getting started 
+
+### Cloud
+
+Easiest way to run this material. Only available during workshop. Many thanks to the Australian Research Data Commons (ARDC) for providing RStudio in the Australian Nectar Research Cloud and Andy Botting from ARDC for helping to set up.
+
+ * Login to one of the servers (e.g. https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/) with one of the usernames and passwords from the spreadsheet provided at the workshop. Add your name into the spreadsheet beside the login you're using.
+ * Open `tidytranscriptomics_case_study.Rmd` in `ismb2022_tidytranscriptomcs/vignettes` folder
+ 
+
+### Local
+
+We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/index.html#workshop-package-installation). 
+
+Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html). 
+
+
 ```{r}
 library(Seurat)
 library(ggplot2)
