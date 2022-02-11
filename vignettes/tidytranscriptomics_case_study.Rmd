@@ -15,6 +15,24 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Goals
+
+### What you will learn
+
+-   The differences between `Seurat` and `SingleCellExperiment` representation, and `tidy` representation
+-   How to interface `Seurat` and `SingleCellExperiment` with tidy manipulation and visualisation
+-   Basic `tidy` operations possible with `tidyseurat` and `tidySingleCellExpperiment`
+-   The integration of the full `tidytranscriptomics` ecosystem
+-   A real-world case study that will showcase the power of tidy abstraction compared with base/ad-hoc interfaces
+
+### What you will *not* learn
+
+-   The molecular technology of single-cell sequencing
+
+-   The foundamentals of single-cell data analysis
+
+-   The foundamentals of tidy data analysis
+
 ## Instructors
 
 *Dr. Stefano Mangiola* is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.
