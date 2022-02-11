@@ -316,7 +316,7 @@ TODO: add plotly example, need UMAP3
 And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
 
 ```{r umap plot 2, eval=FALSE}
-pbmc = iscb2021tidytranscriptomics::pbmc
+pbmc = iscb2021tidytranscriptomics::seurat_obj_UMAP3
 
 pbmc |>
 
