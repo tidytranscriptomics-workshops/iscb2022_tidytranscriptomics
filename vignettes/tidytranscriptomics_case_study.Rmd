@@ -15,6 +15,24 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Goals
+
+### What you will learn
+
+-   The differences between `Seurat` and `SingleCellExperiment` representation, and `tidy` representation
+-   How to interface `Seurat` and `SingleCellExperiment` with tidy manipulation and visualisation
+-   Basic `tidy` operations possible with `tidyseurat` and `tidySingleCellExpperiment`
+-   The integration of the full `tidytranscriptomics` ecosystem
+-   A real-world case study that will showcase the power of tidy abstraction compared with base/ad-hoc interfaces
+
+### What you will *not* learn
+
+-   The molecular technology of single-cell sequencing
+
+-   The foundamentals of single-cell data analysis
+
+-   The foundamentals of tidy data analysis
+
 ## Instructors
 
 *Dr. Stefano Mangiola* is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.
@@ -27,22 +45,20 @@ This workshop will demonstrate a real-world example of using tidy transcriptomic
 
 This workshop is not a step-by-step introduction in how to perform single-cell analysis. For an overview of single-cell analysis steps performed in a tidy way please see the [ISMB2021 workshop](https://tidytranscriptomics-workshops.github.io/ismb2021_tidytranscriptomics/articles/tidytranscriptomics.html).
 
-## Getting started 
+## Getting started
 
 ### Cloud
 
 Easiest way to run this material. Only available during workshop. Many thanks to the Australian Research Data Commons (ARDC) for providing RStudio in the Australian Nectar Research Cloud and Andy Botting from ARDC for helping to set up.
 
- * Login to one of the servers (e.g. https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/) with one of the usernames and passwords from the spreadsheet provided at the workshop. Add your name into the spreadsheet beside the login you're using.
- * Open `tidytranscriptomics_case_study.Rmd` in `ismb2022_tidytranscriptomcs/vignettes` folder
- 
+-   Login to one of the servers (e.g. <https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/>) with one of the usernames and passwords from the spreadsheet provided at the workshop. Add your name into the spreadsheet beside the login you're using.
+-   Open `tidytranscriptomics_case_study.Rmd` in `ismb2022_tidytranscriptomcs/vignettes` folder
 
 ### Local
 
-We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/index.html#workshop-package-installation). 
+We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/index.html#workshop-package-installation).
 
-Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html). 
-
+Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html).
 
 ```{r}
 library(Seurat)
@@ -51,7 +67,6 @@ library(dplyr)
 library(colorspace)
 library(SeuratWrappers)
 ```
-
 
 ## Introduction to tidyseurat
 
@@ -67,8 +82,7 @@ seurat_obj <- iscb2022tidytranscriptomics::seurat_obj
 seurat_obj
 ```
 
-tidyseurat provides a bridge between the Seurat single-cell package and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the
-Seurat object as a tidyverse tibble, and provides Seurat-compatible *dplyr*, *tidyr*, *ggplot* and *plotly* functions.
+tidyseurat provides a bridge between the Seurat single-cell package and the tidyverse [@wickham2019welcome]. It creates an invisible layer that enables viewing the Seurat object as a tidyverse tibble, and provides Seurat-compatible *dplyr*, *tidyr*, *ggplot* and *plotly* functions.
 
 If we load the *tidyseurat* package and then view the single cell data, it now displays as a tibble.
 
@@ -78,7 +92,6 @@ library(tidyseurat)
 seurat_obj 
 ```
 
-
 It can be interacted with using [Seurat commands](https://satijalab.org/seurat/articles/essential_commands.html) such as `Assays`.
 
 ```{r}
@@ -87,10 +100,29 @@ Assays(seurat_obj)
 
 We can also interact with our object as we do with any tidyverse tibble.
 
+## Data processing
+
+The object `seurat_obj` has been created as part of a study on breast cancer systemic immune response. Peripheral blood mononuclear cells have been sequenced for RNA at the single-cell level.
+
+-   `scran`, `scater`, and `DropletsUtils` packages have been used to eliminate empty droplets and dead cells. Samples was individually quality checked and cells were filtered for good gene coverage.
+
+-   Variable feature were identified using `Seurat`.
+
+-   Read counts were scaled and normalised using SCTtransform from `Seurat`.
+
+-   Data integration was performed using `Seurat` with defaukt parameters.
+
+-   PCA performed to reduce feature dimensionality.
+
+-   Nearest-neighbor cell networks were calculated using 30 principal components.
+
+-   2 UMAP dimensions were calculated using 30 principal components.
+
+-   Cells were grouped in cluster of cells with similar transcriptome profile usign Louvain clustering from `Seurat`.
 
 ### Tidyverse commands
 
-We can use tidyverse commands, such as `filter`, `select` and `mutate` to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website [here](https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1). 
+We can use tidyverse commands, such as `filter`, `select` and `mutate` to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website [here](https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1).
 
 We can use `filter` to choose rows, for example, to see just the rows for the cells in G1 cell-cycle stage. Check if have groups or ident present.
 
@@ -104,7 +136,7 @@ We can use `select` to choose columns, for example, to see the sample, cell, tot
 seurat_obj |> select(.cell, nCount_RNA, Phase)
 ```
 
-We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`. 
+We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`.
 
 ```{r}
 seurat_obj %>%
@@ -113,10 +145,7 @@ seurat_obj %>%
   select(Phase, Phase_l)
 ```
 
-
-
 We can add information (counts) for features (genes) as columns using `join_features`.
-
 
 ```{r}
 
@@ -152,7 +181,7 @@ seurat_obj |>
   select(signature_score, everything())
 ```
 
-We can visualise using Seurat's visualisation functions. 
+We can visualise using Seurat's visualisation functions.
 
 ```{r}
 
@@ -282,13 +311,12 @@ seurat_obj |>
   FindClusters( resolution = 0.3)
 ```
 
-
 TODO: add plotly example, need UMAP3
 
 And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
 
 ```{r umap plot 2, eval=FALSE}
-pbmc = iscb2021tidytranscriptomics::pbmc
+pbmc = iscb2021tidytranscriptomics::seurat_obj_UMAP3
 
 pbmc |>
 
