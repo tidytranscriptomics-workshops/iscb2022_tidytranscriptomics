@@ -16,7 +16,7 @@
 
 ## Syllabus
 
-Material [web page](https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics.html).
+Material [web page](https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html).
 
 More details on the workshop are below.
 
