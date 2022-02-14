@@ -87,6 +87,31 @@
     
     
 <div class="section level2">
+<h2 id="goals">Goals<a class="anchor" aria-label="anchor" href="#goals"></a>
+</h2>
+<div class="section level3">
+<h3 id="what-you-will-learn">What you will learn<a class="anchor" aria-label="anchor" href="#what-you-will-learn"></a>
+</h3>
+<ul>
+<li>The differences between <code>Seurat</code> and <code>SingleCellExperiment</code> representation, and <code>tidy</code> representation</li>
+<li>How to interface <code>Seurat</code> and <code>SingleCellExperiment</code> with tidy manipulation and visualisation</li>
+<li>Basic <code>tidy</code> operations possible with <code>tidyseurat</code> and <code>tidySingleCellExpperiment</code>
+</li>
+<li>The integration of the full <code>tidytranscriptomics</code> ecosystem</li>
+<li>A real-world case study that will showcase the power of tidy abstraction compared with base/ad-hoc interfaces</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="what-you-will-not-learn">What you will <em>not</em> learn<a class="anchor" aria-label="anchor" href="#what-you-will-not-learn"></a>
+</h3>
+<ul>
+<li><p>The molecular technology of single-cell sequencing</p></li>
+<li><p>The foundamentals of single-cell data analysis</p></li>
+<li><p>The foundamentals of tidy data analysis</p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
 <h2 id="instructors">Instructors<a class="anchor" aria-label="anchor" href="#instructors"></a>
 </h2>
 <p><em>Dr. Stefano Mangiola</em> is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.</p>
@@ -117,11 +142,8 @@
 <p>Alternatively, you can view the material at the workshop webpage <a href="https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html" class="external-link">here</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat" class="external-link">Seurat</a></span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Registered S3 method overwritten by 'spatstat.geom':</span>
-<span class="co">##   method     from</span>
-<span class="co">##   print.boxx cli</span></code></pre>
 <pre><code><span class="co">## Attaching SeuratObject</span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## </span>
@@ -132,7 +154,7 @@
 <pre><code><span class="co">## The following objects are masked from 'package:base':</span>
 <span class="co">## </span>
 <span class="co">##     intersect, setdiff, setequal, union</span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/" class="external-link">colorspace</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SeuratWrappers</span><span class="op">)</span></code></pre></div>
 </div>
@@ -142,7 +164,7 @@
 </h2>
 <p>Seurat is a very popular analysis toolkit for single cell RNA sequencing data <span class="citation">(Butler et al. 2018; Stuart et al. 2019)</span> .</p>
 <p>Here we load single-cell data in Seurat object format. This data is peripheral blood mononuclear cells (PBMCs) from metastatic breast cancer patients.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load single cell RNA sequencing data</span>
 <span class="va">seurat_obj</span> <span class="op">&lt;-</span> <span class="fu">iscb2022tidytranscriptomics</span><span class="fu">::</span><span class="va"><a href="../reference/seurat_obj.html">seurat_obj</a></span>
 
@@ -188,7 +210,7 @@
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>tidyseurat provides a bridge between the Seurat single-cell package and the tidyverse <span class="citation">(Wickham et al. 2019)</span>. It creates an invisible layer that enables viewing the Seurat object as a tidyverse tibble, and provides Seurat-compatible <em>dplyr</em>, <em>tidyr</em>, <em>ggplot</em> and <em>plotly</em> functions.</p>
 <p>If we load the <em>tidyseurat</em> package and then view the single cell data, it now displays as a tibble.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stemangiola/tidyseurat" class="external-link">tidyseurat</a></span><span class="op">)</span>
 
 <span class="va">seurat_obj</span> </code></pre></div>
@@ -210,16 +232,31 @@
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>It can be interacted with using <a href="https://satijalab.org/seurat/articles/essential_commands.html" class="external-link">Seurat commands</a> such as <code>Assays</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/ObjectAccess.html" class="external-link">Assays</a></span><span class="op">(</span><span class="va">seurat_obj</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "RNA" "SCT"</span></code></pre>
 <p>We can also interact with our object as we do with any tidyverse tibble.</p>
+</div>
+<div class="section level2">
+<h2 id="data-processing">Data processing<a class="anchor" aria-label="anchor" href="#data-processing"></a>
+</h2>
+<p>The object <code>seurat_obj</code> has been created as part of a study on breast cancer systemic immune response. Peripheral blood mononuclear cells have been sequenced for RNA at the single-cell level.</p>
+<ul>
+<li><p><code>scran</code>, <code>scater</code>, and <code>DropletsUtils</code> packages have been used to eliminate empty droplets and dead cells. Samples was individually quality checked and cells were filtered for good gene coverage.</p></li>
+<li><p>Variable feature were identified using <code>Seurat</code>.</p></li>
+<li><p>Read counts were scaled and normalised using SCTtransform from <code>Seurat</code>.</p></li>
+<li><p>Data integration was performed using <code>Seurat</code> with defaukt parameters.</p></li>
+<li><p>PCA performed to reduce feature dimensionality.</p></li>
+<li><p>Nearest-neighbor cell networks were calculated using 30 principal components.</p></li>
+<li><p>2 UMAP dimensions were calculated using 30 principal components.</p></li>
+<li><p>Cells were grouped in cluster of cells with similar transcriptome profile usign Louvain clustering from <code>Seurat</code>.</p></li>
+</ul>
 <div class="section level3">
 <h3 id="tidyverse-commands">Tidyverse commands<a class="anchor" aria-label="anchor" href="#tidyverse-commands"></a>
 </h3>
 <p>We can use tidyverse commands, such as <code>filter</code>, <code>select</code> and <code>mutate</code> to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website <a href="https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1" class="external-link">here</a>.</p>
 <p>We can use <code>filter</code> to choose rows, for example, to see just the rows for the cells in G1 cell-cycle stage. Check if have groups or ident present.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Phase</span> <span class="op">==</span> <span class="st">"G1"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 19,968 × 15</span></span>
 <span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
@@ -239,7 +276,7 @@
 <span class="co">## <span style="color: #949494;">#   nFeature_RNA &lt;int&gt;, nCount_SCT &lt;dbl&gt;, nFeature_SCT &lt;int&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>We can use <code>select</code> to choose columns, for example, to see the sample, cell, total cellular RNA</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt; <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.cell</span>, <span class="va">nCount_RNA</span>, <span class="va">Phase</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A Seurat-tibble abstraction: 36,683 × 5</span></span>
 <span class="co">## <span style="color: #555555;"># Features=6 | Active assay=SCT | Assays=RNA, SCT</span></span>
@@ -257,7 +294,7 @@
 <span class="co">## <span style="color: #BCBCBC;">10</span> 1_AAAGTCCAGTAACGAT-1       <span style="text-decoration: underline;">2</span>239 S     -<span style="color: #BB0000;">4.03</span>    0.347</span>
 <span class="co">## <span style="color: #949494;"># … with 36,673 more rows</span></span></code></pre>
 <p>We can use <code>mutate</code> to create a column. For example, we could create a new <code>ident_l</code> column that contains a lower-case version of <code>ident</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> <span class="op"><a href="https://rdrr.io/pkg/tidyseurat/man/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidyseurat/man/dplyr-methods.html" class="external-link">mutate</a></span><span class="op">(</span>Phase_l<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">tolower</a></span><span class="op">(</span><span class="va">Phase</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/tidyseurat/man/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># select columns to view    </span>
@@ -278,7 +315,7 @@
 <span class="co">## <span style="color: #BCBCBC;">10</span> S     s      </span>
 <span class="co">## <span style="color: #949494;"># … with 36,673 more rows</span></span></code></pre>
 <p>We can add information (counts) for features (genes) as columns using <code>join_features</code>.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -306,7 +343,7 @@
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;, UMAP_1 &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>We can use <code>join_features</code> with tidyverse <code>mutate</code> to create a column containing a signature score from genes of interest. Here we use a signature from <span class="citation">(Pizzolato et al. 2019)</span>.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -342,7 +379,7 @@
 <span class="co">## <span style="color: #949494;">#   CD3D &lt;dbl&gt;, TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>We can visualise using Seurat’s visualisation functions.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -361,7 +398,7 @@
   <span class="fu">Seurat</span><span class="fu">::</span><span class="fu"><a href="https://satijalab.org/seurat/reference/FeaturePlot.html" class="external-link">FeaturePlot</a></span><span class="op">(</span>features <span class="op">=</span>  <span class="st">"signature_score"</span>, min.cutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> </code></pre></div>
 <p><img src="tidytranscriptomics_case_study_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>We can also visualise and customise using the popular and powerful ggplot package.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -384,7 +421,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="tidytranscriptomics_case_study_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>We can interactively draw cell clusters of interest using the tidygate package.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -423,7 +460,7 @@
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>Filter for just these cells using tidyverse <code>filter</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -461,7 +498,7 @@
 <span class="co">## <span style="color: #949494;">#   TRDC &lt;dbl&gt;, TRGC1 &lt;dbl&gt;, TRGC2 &lt;dbl&gt;, CD8A &lt;dbl&gt;, CD8B &lt;dbl&gt;,</span></span>
 <span class="co">## <span style="color: #949494;">#   signature_score &lt;dbl&gt;, gate &lt;int&gt;, UMAP_1 &lt;dbl&gt;, UMAP_2 &lt;dbl&gt;</span></span></code></pre>
 <p>And perform analyses on these cells by simply chaining the commands, such as below.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">seurat_obj</span> |&gt;
   
   
@@ -491,34 +528,34 @@
   <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span> resolution <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
 <p>TODO: add plotly example, need UMAP3</p>
 <p>And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">=</span> iscb2021tidytranscriptomics<span class="sc">::</span>pbmc</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>pbmc <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define batch</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>file) <span class="sc">|&gt;</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalisation</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">multiBatchNorm</span>(data)) <span class="sc">|&gt;</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Integration</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fastMNN</span>() <span class="sc">|&gt;</span></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join old information</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pbmc <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dimred=</span><span class="st">"corrected"</span>) <span class="sc">|&gt;</span> <span class="co"># from scater|&gt;</span></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  seurat_obj <span class="sc">|&gt;</span></span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dims=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(</span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP1</span><span class="st">`</span>,</span>
-<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP2</span><span class="st">`</span>,</span>
-<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP3</span><span class="st">`</span>,</span>
-<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> friendly_cols[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],</span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="sc">~</span>label,</span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span></span>
-<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">=</span> iscb2021tidytranscriptomics<span class="sc">::</span>seurat_obj_UMAP3</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>pbmc <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define batch</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>file) <span class="sc">|&gt;</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalisation</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">multiBatchNorm</span>(data)) <span class="sc">|&gt;</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Integration</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fastMNN</span>() <span class="sc">|&gt;</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join old information</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pbmc <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dimred=</span><span class="st">"corrected"</span>) <span class="sc">|&gt;</span> <span class="co"># from scater|&gt;</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  seurat_obj <span class="sc">|&gt;</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runUMAP</span>(<span class="at">ncomponents =</span> <span class="dv">3</span>, <span class="at">dims=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP1</span><span class="st">`</span>,</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP2</span><span class="st">`</span>,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="sc">~</span><span class="st">`</span><span class="at">UMAP3</span><span class="st">`</span>,</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> friendly_cols[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="sc">~</span>label,</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-butler2018integrating" class="csl-entry">
 Butler, Andrew, Paul Hoffman, Peter Smibert, Efthymia Papalexi, and Rahul Satija. 2018. <span>“Integrating Single-Cell Transcriptomic Data Across Different Conditions, Technologies, and Species.”</span> <em>Nature Biotechnology</em> 36 (5): 411–20.
