@@ -19,19 +19,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### What you will learn
 
+-   Basic `tidy` operations possible with `tidyseurat` and `tidySingleCellExperiment`
 -   The differences between `Seurat` and `SingleCellExperiment` representation, and `tidy` representation
 -   How to interface `Seurat` and `SingleCellExperiment` with tidy manipulation and visualisation
--   Basic `tidy` operations possible with `tidyseurat` and `tidySingleCellExpperiment`
--   The integration of the full `tidytranscriptomics` ecosystem
--   A real-world case study that will showcase the power of tidy abstraction compared with base/ad-hoc interfaces
+-   A real-world case study that will showcase the power of `tidy` single-cell methods compared with base/ad-hoc methods
 
 ### What you will *not* learn
 
 -   The molecular technology of single-cell sequencing
-
--   The foundamentals of single-cell data analysis
-
--   The foundamentals of tidy data analysis
+-   The fundamentals of single-cell data analysis
+-   The fundamentals of tidy data analysis
 
 ## Instructors
 
@@ -104,13 +101,13 @@ We can also interact with our object as we do with any tidyverse tibble.
 
 The object `seurat_obj` has been created as part of a study on breast cancer systemic immune response. Peripheral blood mononuclear cells have been sequenced for RNA at the single-cell level.
 
--   `scran`, `scater`, and `DropletsUtils` packages have been used to eliminate empty droplets and dead cells. Samples was individually quality checked and cells were filtered for good gene coverage.
+-   `scran`, `scater`, and `DropletsUtils` packages have been used to eliminate empty droplets and dead cells. Samples were individually quality checked and cells were filtered for good gene coverage.
 
--   Variable feature were identified using `Seurat`.
+-   Variable features were identified using `Seurat`.
 
 -   Read counts were scaled and normalised using SCTtransform from `Seurat`.
 
--   Data integration was performed using `Seurat` with defaukt parameters.
+-   Data integration was performed using `Seurat` with default parameters.
 
 -   PCA performed to reduce feature dimensionality.
 
@@ -118,7 +115,7 @@ The object `seurat_obj` has been created as part of a study on breast cancer sys
 
 -   2 UMAP dimensions were calculated using 30 principal components.
 
--   Cells were grouped in cluster of cells with similar transcriptome profile usign Louvain clustering from `Seurat`.
+-   Cells with similar transcriptome profiles were grouped into clusters using Louvain clustering from `Seurat`.
 
 ### Tidyverse commands
 
@@ -311,37 +308,18 @@ seurat_obj |>
   FindClusters( resolution = 0.3)
 ```
 
-TODO: add plotly example, need UMAP3
+And we can visualise clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
 
-And we can plot the clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
-
-```{r umap plot 2, eval=FALSE}
-pbmc = iscb2021tidytranscriptomics::seurat_obj_UMAP3
+```{r umap plot 2}
+pbmc = iscb2022tidytranscriptomics::seurat_obj_UMAP3
 
 pbmc |>
-
-  # Define batch
-  nest(data = -file) |>
-
-  # Normalisation
-  mutate(data = multiBatchNorm(data)) |>
-
-  # Integration
-  pull(data) |>
-  fastMNN() |>
-
-  # Join old information
-  left_join(pbmc |> as_tibble()) |>
-  runUMAP(ncomponents = 3, dimred="corrected") |> # from scater|>
-  
-  seurat_obj |>
-  runUMAP(ncomponents = 3, dims=1:20) |> 
+    
   plot_ly(
-    x = ~`UMAP1`,
-    y = ~`UMAP2`,
-    z = ~`UMAP3`,
-    colors = friendly_cols[1:10],
-    color = ~label,
-    size=0.5
+    x = ~`UMAP_1`,
+    y = ~`UMAP_2`,
+    z = ~`UMAP_3`,
+    color = ~curated_cell_type,
+    size=0.05
   )
 ```
