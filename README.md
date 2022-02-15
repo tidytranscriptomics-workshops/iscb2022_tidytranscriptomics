@@ -83,9 +83,16 @@ The tidytranscriptomics approach to RNA sequencing data analysis abstracts out t
 
 * To approach data representation and analysis though a tidy data paradigm, integrating tidyverse with tidyseurat, tidySingleCellExperiment and tidyHeatmap.
 
-#### Learning objectives
+### What you will learn
 
-* Recall the key concepts of RNA sequencing data analysis
-* Apply the concepts to publicly available data
-* Create plots that summarise the information content of the data and analysis results
+* Basic tidy operations possible with tidyseurat and tidySingleCellExperiment
+* The differences between Seurat and SingleCellExperiment representation, and tidy representation
+* How to interface Seurat and SingleCellExperiment with tidy manipulation and visualisation
+* A real-world case study that will showcase the power of tidy single-cell methods compared with base/ad-hoc methods
+
+### What you will not learn
+
+* The molecular technology of single-cell sequencing
+* The fundamentals of single-cell data analysis
+* The fundamentals of tidy data analysis
 
