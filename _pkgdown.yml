@@ -16,12 +16,10 @@ navbar:
   title: ~
   type: default
   left:
-    - text: Background
-      href: articles/background.html
     - text: Workshop
-      href: articles/tidytranscriptomics.html
+      href: articles/tidytranscriptomics_case_study.html
 
   right:
    - icon: fab fa-github
-     href: https://github.com/tidytranscriptomics-workshops/iscb2021_tidytranscriptomics
+     href: https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics
     
