@@ -41,7 +41,8 @@ Imports:
     devtools,
     rlang,
     magrittr,
-    R.utils
+    R.utils,
+    dittoSeq
 Suggests:
     knitr,
     rmarkdown,
