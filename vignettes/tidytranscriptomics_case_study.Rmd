@@ -57,12 +57,13 @@ We will use the Cloud during the ISCB workshop and this method is available if y
 
 Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html).
 
-```{r}
+```{r message = FALSE}
 library(Seurat)
 library(ggplot2)
 library(dplyr)
 library(colorspace)
 library(SeuratWrappers)
+library(dittoSeq)
 ```
 
 
@@ -84,7 +85,7 @@ tidyseurat provides a bridge between the Seurat single-cell package and the tidy
 
 If we load the *tidyseurat* package and then view the single cell data, it now displays as a tibble.
 
-```{r}
+```{r message = FALSE}
 library(tidyseurat)
 
 seurat_obj 
@@ -354,7 +355,7 @@ single_cell_object |>
   
 We'll demonstrate creating a 3D plot using some data that has 3 UMAP dimensions.
 
-```{r umap plot 2}
+```{r umap plot 2, message = FALSE, warning = FALSE}
 pbmc = iscb2022tidytranscriptomics::seurat_obj_UMAP3
 
 pbmc |>
@@ -364,6 +365,7 @@ pbmc |>
     y = ~`UMAP_2`,
     z = ~`UMAP_3`,
     color = ~curated_cell_type,
+    colors = dittoSeq::dittoColors(),
     size=0.05
   )
 ```
