@@ -65,9 +65,10 @@ library(colorspace)
 library(SeuratWrappers)
 ```
 
+
 ## Introduction to tidyseurat
 
-Seurat is a very popular analysis toolkit for single cell RNA sequencing data [@butler2018integrating; @stuart2019comprehensive] .
+Seurat is a very popular analysis toolkit for single cell RNA sequencing data [@butler2018integrating; @stuart2019comprehensive].
 
 Here we load single-cell data in Seurat object format. This data is peripheral blood mononuclear cells (PBMCs) from metastatic breast cancer patients.
 
@@ -97,26 +98,6 @@ Assays(seurat_obj)
 
 We can also interact with our object as we do with any tidyverse tibble.
 
-## Data processing
-
-The object `seurat_obj` has been created as part of a study on breast cancer systemic immune response. Peripheral blood mononuclear cells have been sequenced for RNA at the single-cell level.
-
--   `scran`, `scater`, and `DropletsUtils` packages have been used to eliminate empty droplets and dead cells. Samples were individually quality checked and cells were filtered for good gene coverage.
-
--   Variable features were identified using `Seurat`.
-
--   Read counts were scaled and normalised using SCTtransform from `Seurat`.
-
--   Data integration was performed using `Seurat` with default parameters.
-
--   PCA performed to reduce feature dimensionality.
-
--   Nearest-neighbor cell networks were calculated using 30 principal components.
-
--   2 UMAP dimensions were calculated using 30 principal components.
-
--   Cells with similar transcriptome profiles were grouped into clusters using Louvain clustering from `Seurat`.
-
 ### Tidyverse commands
 
 We can use tidyverse commands, such as `filter`, `select` and `mutate` to explore the tidyseurat object. Some examples are shown below and more can be seen at the tidyseurat website [here](https://stemangiola.github.io/tidyseurat/articles/introduction.html#tidyverse-commands-1).
@@ -136,13 +117,67 @@ seurat_obj |> select(.cell, nCount_RNA, Phase)
 We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`.
 
 ```{r}
-seurat_obj %>%
-  mutate(Phase_l=tolower(Phase)) %>%
+seurat_obj |>
+  mutate(Phase_l=tolower(Phase)) |>
   # select columns to view    
   select(Phase, Phase_l)
 ```
 
-We can add information (counts) for features (genes) as columns using `join_features`.
+We can use tidyverse commands to polish an annotation column. We will extract the sample, and group information from the file name column into separate columns.
+
+```{r}
+# First take a look at the file column
+seurat_obj |> select(file)
+```
+
+```{r}
+# Create columns for sample and group
+seurat_obj <- seurat_obj |>
+
+# Extract sample and group
+  extract(file, "sample", "../data/.*/([a-zA-Z0-9_-]+)/outs.+", remove = FALSE)
+
+# Take a look
+seurat_obj |> select(sample)
+```
+
+We could use tidyverse `unite` to combine columns, for example to create a new column for sample id combining the sample and BCB columns. 
+
+```{r}
+seurat_obj <- seurat_obj |> unite("sample_id", sample, BCB, remove = FALSE)
+
+# Take a look
+seurat_obj |> select(sample_id, sample, BCB)
+```
+
+
+## Case study
+
+### Data pre-processing
+
+The object `seurat_obj` we've been using was created as part of a study on breast cancer systemic immune response. Peripheral blood mononuclear cells have been sequenced for RNA at the single-cell level. The steps used to generate the object are summarised below.
+
+-   `scran`, `scater`, and `DropletsUtils` packages have been used to eliminate empty droplets and dead cells. Samples were individually quality checked and cells were filtered for good gene coverage.
+
+-   Variable features were identified using `Seurat`.
+
+-   Read counts were scaled and normalised using SCTtransform from `Seurat`.
+
+-   Data integration was performed using `Seurat` with default parameters.
+
+-   PCA performed to reduce feature dimensionality.
+
+-   Nearest-neighbor cell networks were calculated using 30 principal components.
+
+-   2 UMAP dimensions were calculated using 30 principal components.
+
+-   Cells with similar transcriptome profiles were grouped into clusters using Louvain clustering from `Seurat`.
+
+### Analyse custom signature
+
+The researcher analysing this dataset wanted to to identify gamma delta T cells using a gene signature from a published paper [@Pizzolato2019]. 
+
+With tidyseurat's `join_features` the counts for the genes could be viewed as columns.
 
 ```{r}
 
@@ -156,7 +191,8 @@ seurat_obj |>
   ) 
 ```
 
-We can use `join_features` with tidyverse `mutate` to create a column containing a signature score from genes of interest. Here we use a signature from [@Pizzolato2019].
+
+They were able to use tidyseurat's `join_features` to select the counts for the genes in the signature, followed by tidyverse `mutate` to easily create a column containing the signature score.
 
 ```{r}
 
@@ -171,14 +207,14 @@ seurat_obj |>
   ) |>
   
   mutate(signature_score =
-           scales::rescale(CD3D + TRDC + TRGC1+ TRGC2, to=c(0,1)) -
+           scales::rescale(CD3D + TRDC + TRGC1 + TRGC2, to=c(0,1)) -
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
   select(signature_score, everything())
 ```
 
-We can visualise using Seurat's visualisation functions.
+The gamma delta T cells could then be visualised by the signature score using Seurat's visualisation functions.
 
 ```{r}
 
@@ -200,7 +236,7 @@ seurat_obj |>
   Seurat::FeaturePlot(features =  "signature_score", min.cutoff = 0) 
 ```
 
-We can also visualise and customise using the popular and powerful ggplot package.
+The cells could also be visualised using the popular and powerful ggplot package, enabling the researcher to use ggplot functions they were familiar with, and to customise the plot with great flexibility.
 
 ```{r}
 
@@ -226,7 +262,7 @@ seurat_obj |>
   theme_bw()
 ```
 
-We can interactively draw cell clusters of interest using the tidygate package.
+The gamma delta T cells (the blue cluster on the left with high signature score) could be interactively selected from the plot using the tidygate package.
 
 ```{r}
 
@@ -251,7 +287,7 @@ seurat_obj |>
   ))
 ```
 
-Filter for just these cells using tidyverse `filter`.
+And the dataset could be filtered for just these cells using tidyverse `filter`.
 
 ```{r}
 
@@ -275,7 +311,7 @@ seurat_obj |>
   filter(gate == 1) 
 ```
 
-And perform analyses on these cells by simply chaining the commands, such as below.
+It was then possible to perform analyses on these gamma delta T cells by simply chaining further commands, such as below.
 
 ```{r eval = FALSE}
 
@@ -308,7 +344,15 @@ seurat_obj |>
   FindClusters( resolution = 0.3)
 ```
 
-And we can visualise clusters as a 3D plot using plotly. This time we are colouring by estimated cluster labels to visually check the cluster labels.
+It was also possible to visualise the cells as a 3D plot using plotly. 
+The example data used here only contains a few genes, for the sake of time and size in this demonstration, but below is how you could generate the 3 dimensions needed for 3D plot with a full dataset.
+
+```{r eval = FALSE}
+single_cell_object |> 
+  RunUMAP(dims = 1:30, n.components = 3L, spread = 0.5,min.dist  = 0.01, n.neighbors = 10L)
+```
+  
+We'll demonstrate creating a 3D plot using some data that has 3 UMAP dimensions.
 
 ```{r umap plot 2}
 pbmc = iscb2022tidytranscriptomics::seurat_obj_UMAP3
