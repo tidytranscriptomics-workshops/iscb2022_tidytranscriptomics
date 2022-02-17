@@ -36,6 +36,10 @@ knitr::opts_chunk$set(echo = TRUE)
 -   The fundamentals of single-cell data analysis
 -   The fundamentals of tidy data analysis
 
+## Slides
+
+[Link to lecture slides](https://docs.google.com/presentation/d/1JOCydABleBoJSawjv0f2TvRIhu38cqMz/edit?usp=sharing&ouid=110679273540384366696&rtpof=true&sd=true)
+
 ## Getting started
 
 ### Cloud
