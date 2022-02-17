@@ -110,12 +110,22 @@ We can use `select` to choose columns, for example, to see the sample, cell, tot
 seurat_obj |> select(.cell, nCount_RNA, Phase)
 ```
 
-We can use `mutate` to create a column. For example, we could create a new `ident_l` column that contains a lower-case version of `ident`.
+We also see the UMAP columns as they are not part of the cell metadata, they are read-only.
+If we want to save the edited metadata, the Seurat object is modified accordingly. 
+```{r}
+# Save edited metadata
+seurat_modified <- seurat_obj |> select(.cell, nCount_RNA, Phase)
+# View Seurat metadata
+seurat_modified[[]] 
+```
+
+We can use `mutate` to create a column. For example, we could create a new `Phase_l` column that contains a lower-case version of `Phase`.
 
 ```{r}
 seurat_obj |>
   mutate(Phase_l=tolower(Phase)) |>
-  # select columns to view    
+  
+  # Select columns to view    
   select(Phase, Phase_l)
 ```
 
@@ -137,7 +147,7 @@ seurat_obj <- seurat_obj |>
 seurat_obj |> select(sample)
 ```
 
-We could use tidyverse `unite` to combine columns, for example to create a new column for sample id combining the sample and BCB columns. 
+We could use tidyverse `unite` to combine columns, for example to create a new column for sample id that combines the sample and patient identifier (BCB) columns. 
 
 ```{r}
 seurat_obj <- seurat_obj |> unite("sample_id", sample, BCB, remove = FALSE)
@@ -287,6 +297,8 @@ seurat_obj |>
 
 ```
 
+Here we draw one gate but multiple gates can be drawn.
+
 After the selection we can reload from file the gate drawn for reproducibility.
 
 ```{r eval=FALSE}
@@ -357,18 +369,18 @@ seurat_obj |>
            scales::rescale(CD8A + CD8B, to=c(0,1))
   ) |>
   
-  mutate( gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_seurat_obj) ) |> 
+  mutate(gate = tidygate::gate_int(UMAP_1, UMAP_2, gate_list = iscb2022tidytranscriptomics::gate_seurat_obj) ) |> 
   
   filter(gate == 1) |>
   
   # Reanalyse
   NormalizeData(assay="RNA") |> 
-  FindVariableFeatures( nfeatures = 100, assay="RNA") |>
+  FindVariableFeatures(nfeatures = 100, assay="RNA") |>
   SplitObject(split.by = "file") |> 
   RunFastMNN(assay="RNA") |> 
   RunUMAP(reduction = "mnn", dims = 1:20) |> 
-  FindNeighbors( dims = 1:20, reduction = "mnn") |> 
-  FindClusters( resolution = 0.3)
+  FindNeighbors(dims = 1:20, reduction = "mnn") |> 
+  FindClusters(resolution = 0.3)
 ```
 
 For comparison, we show the alternative using base R and Seurat
@@ -389,7 +401,7 @@ seurat_obj$signature_score = counts_positive - counts_negative
 
 p = FeaturePlot(seurat_obj, features = "signature_score")
 
-# This is not reproducible (on the contrary of tidygate)
+# This is not reproducible (in contrast to tidygate)
 seurat_obj$within_gate = colnames(seurat_obj) %in% CellSelector(plot = p)
 
 seurat_obj |> 
@@ -397,16 +409,17 @@ seurat_obj |>
   
   # Reanalyse
   NormalizeData(assay="RNA") |> 
-  FindVariableFeatures( nfeatures = 100, assay="RNA") |>
+  FindVariableFeatures(nfeatures = 100, assay="RNA") |>
   SplitObject(split.by = "file") |> 
   RunFastMNN(assay="RNA") |> 
   RunUMAP(reduction = "mnn", dims = 1:20) |> 
-  FindNeighbors( dims = 1:20, reduction = "mnn") |> 
-  FindClusters( resolution = 0.3)
+  FindNeighbors(dims = 1:20, reduction = "mnn") |> 
+  FindClusters(resolution = 0.3)
 ```
 
-It was also possible to visualise the cells as a 3D plot using plotly. 
-The example data used here only contains a few genes, for the sake of time and size in this demonstration, but below is how you could generate the 3 dimensions needed for 3D plot with a full dataset.
+As a final note, it's also possible to do complex and powerful things in a simple way, due to the integration of the tidy transcriptomics packages with the tidy universe. As one example, we can visualise the cells as a 3D plot using plotly. 
+ 
+The example data we've been using only contains a few genes, for the sake of time and size in this demonstration, but below is how you could generate the 3 dimensions needed for 3D plot with a full dataset.
 
 ```{r eval = FALSE}
 single_cell_object |> 

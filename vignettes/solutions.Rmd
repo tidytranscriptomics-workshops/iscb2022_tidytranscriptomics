@@ -45,12 +45,11 @@ seurat_obj |>
   count(gate) %>% 
   summarise(proportion = n/sum(n))
 
-
 ```
 
 ## Question 2
 
-There is a cluster of cells characterised by a low RNA output (nCount_RNA). Use tidygate to asses the cell composition (curated_cell_type) of that cluster.
+There is a cluster of cells characterised by a low RNA output (nCount_RNA). Use tidygate to identify the cell composition (curated_cell_type) of that cluster.
 
 
 ```{r, eval=FALSE}

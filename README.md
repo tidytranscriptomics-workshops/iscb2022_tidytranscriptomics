@@ -60,7 +60,7 @@ This can be achieved with the integration of packages present in the R CRAN and 
 
 ### Workshop Participation
 
-The workshop format is a 2 hour session consisting of lecture, hands-on demos, exercises and Q&A.
+The workshop format is a 1.5 hour session consisting of lecture, hands-on demo, exercises and Q&A.
 
 
 ### Workshop goals and objectives
