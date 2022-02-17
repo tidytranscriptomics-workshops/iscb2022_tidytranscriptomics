@@ -3,8 +3,8 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   tidytranscriptomics_case_study: tidytranscriptomics_case_study.html
-last_built: 2022-02-17T15:20Z
+last_built: 2022-02-17T15:49Z
 urls:
-  reference: https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics/reference
-  article: https://tidytranscriptomics-workshops.github.io/iscb2021_tidytranscriptomics/articles
+  reference: https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/reference
+  article: https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles
 

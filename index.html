@@ -71,7 +71,7 @@
 
 
 <div class="section level1">
-<div class="page-header"><h1 id="introduction-to-tidy-transcriptomics">Introduction to Tidy Transcriptomics<a class="anchor" aria-label="anchor" href="#introduction-to-tidy-transcriptomics"></a>
+<div class="page-header"><h1 id="tidy-transcriptomics-for-single-cell-rna-sequencing-analyses">Tidy Transcriptomics for Single-cell RNA Sequencing Analyses<a class="anchor" aria-label="anchor" href="#tidy-transcriptomics-for-single-cell-rna-sequencing-analyses"></a>
 </h1></div>
 <p float="left">
 <img height="100" width="300" alt="iscbacademy" src="reference/figures/ISCBacademy.png"><img height="100" alt="tidybulk" src="https://github.com/Bioconductor/BiocStickers/blob/master/tidybulk/tidybulk.png?raw=true"></p>
@@ -87,13 +87,13 @@
 <div class="section level2">
 <h2 id="syllabus">Syllabus<a class="anchor" aria-label="anchor" href="#syllabus"></a>
 </h2>
-<p>Material <a href="https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html" class="external-link">web page</a>.</p>
+<p>Material <a href="https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html">web page</a>.</p>
 <p>More details on the workshop are below.</p>
 </div>
 <div class="section level2">
 <h2 id="workshop-package-installation">Workshop package installation<a class="anchor" aria-label="anchor" href="#workshop-package-installation"></a>
 </h2>
-<p>For the iscb2022 workshop, an RStudio in the cloud will be provided with everything installed, all that participants will need is a web browser.</p>
+<p>For the ISCB 2022 workshop, an RStudio in the cloud will be provided with everything installed, all that participants will need is a web browser.</p>
 <p>If you want to install the packages and material post-workshop, the instructions are below. The workshop is designed for R <code>4.1</code> and Bioconductor 3.14.</p>
 <pre><code><span class="co">#install.packages('remotes')</span>
 
@@ -101,16 +101,16 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span><span class="st">"R_REMOTES_NO_ERRORS_FROM_WARNINGS"</span> <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span>
 
 <span class="co"># Install same versions used in the workshop</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"stemangiola/tidyseurat@v0.4.0"</span>, <span class="st">"stemangiola/tidySingleCellExperiment@v1.3.3"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"stemangiola/tidyseurat@v0.5.1"</span>, <span class="st">"stemangiola/tidySingleCellExperiment@v1.3.2"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Install workshop package</span>
 
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"tidytranscriptomics-workshops/iscb2022_tidytranscriptomics"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># To view vignettes</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/" class="external-link">iscb2022tidytranscriptomics</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/">iscb2022tidytranscriptomics</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html" class="external-link">browseVignettes</a></span><span class="op">(</span><span class="st">"iscb2022tidytranscriptomics"</span><span class="op">)</span></code></pre>
-<p>To run the code, you could then copy and paste the code from the workshop vignette or <a href="https://raw.githubusercontent.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/master/vignettes/tidytranscriptomics.Rmd" class="external-link">R markdown file</a> into a new R Markdown file on your computer.</p>
+<p>To run the code, you could then copy and paste the code from the workshop vignette or <a href="https://raw.githubusercontent.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/master/vignettes/tidytranscriptomics_case_study.Rmd" class="external-link">R markdown file</a> into a new R Markdown file on your computer.</p>
 </div>
 <div class="section level2">
 <h2 id="workshop-description">Workshop Description<a class="anchor" aria-label="anchor" href="#workshop-description"></a>
@@ -121,38 +121,32 @@
 <h3 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
 </h3>
 <ul>
-<li>Basic familiarity with single cell transcriptomic analyses</li>
+<li>Basic familiarity with single-cell transcriptomic analyses</li>
 <li>Basic familiarity with tidyverse</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="workshop-participation">Workshop Participation<a class="anchor" aria-label="anchor" href="#workshop-participation"></a>
 </h3>
-<p>The workshop format is a 2 hour session consisting of hands-on demos, exercises and Q&amp;A.</p>
-</div>
-<div class="section level3">
-<h3 id="r--bioconductor-packages-used">
-<em>R</em> / <em>Bioconductor</em> packages used<a class="anchor" aria-label="anchor" href="#r--bioconductor-packages-used"></a>
-</h3>
-<ul>
-<li>tidyseurat</li>
-<li>tidySingleCellExperiment</li>
-<li>org.Hs.eg.db</li>
-<li>ggrepel</li>
-<li>GGally</li>
-<li>plotly</li>
-</ul>
+<p>The workshop format is a 2 hour session consisting of lecture, hands-on demos, exercises and Q&amp;A.</p>
 </div>
 <div class="section level3">
 <h3 id="workshop-goals-and-objectives">Workshop goals and objectives<a class="anchor" aria-label="anchor" href="#workshop-goals-and-objectives"></a>
 </h3>
-<p>In exploring and analysing RNA sequencing data, there are a number of key concepts, such as filtering, scaling, dimensionality reduction, hypothesis testing, clustering and visualisation, that need to be understood. These concepts can be intuitively explained to new users, however, (i) the use of a heterogeneous vocabulary and jargon by methodologies/algorithms/packages, (ii) the complexity of data wrangling, and (iii) the coding burden, impede effective learning of the statistics and biology underlying an informed RNA sequencing analysis.</p>
-<p>The tidytranscriptomics approach to RNA sequencing data analysis abstracts out the coding-related complexity and provides tools that use an intuitive and jargon-free vocabulary, enabling focus on the statistical and biological challenges.</p>
 <div class="section level4">
 <h4 id="learning-goals">Learning goals<a class="anchor" aria-label="anchor" href="#learning-goals"></a>
 </h4>
 <ul>
-<li>To approach data representation and analysis though a tidy data paradigm, integrating tidyverse with tidyseurat, tidySingleCellExperiment and tidyHeatmap.</li>
+<li>To approach single-cell data representation and analysis though a tidy data paradigm, integrating tidyverse with tidyseurat and tidySingleCellExperiment.</li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
+</h4>
+<ul>
+<li>Compare Seurat and SingleCellExperiment and tidy representation</li>
+<li>Apply tidy functions to Seurat and SingleCellExperiment objects</li>
+<li>Reproduce a real-world case study that showcases the power of tidy single-cell methods</li>
 </ul>
 </div>
 <div class="section level4">
