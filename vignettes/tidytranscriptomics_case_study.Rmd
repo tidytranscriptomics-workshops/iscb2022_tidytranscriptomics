@@ -427,7 +427,7 @@ pbmc |>
     y = ~`UMAP_2`,
     z = ~`UMAP_3`,
     color = ~curated_cell_type,
-    colors = dittoSeq::dittoColors(),
+    colors = dittoSeq::dittoColors()
   ) %>% 
   
    add_markers(size = I(1))
