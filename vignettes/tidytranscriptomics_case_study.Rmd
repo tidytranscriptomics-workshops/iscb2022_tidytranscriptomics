@@ -447,6 +447,6 @@ pbmc |>
 
 ## Exercises
 
-1. What proportion of of all cells are gamma-delta T cells?  
+1. What proportion of all cells are gamma-delta T cells?  
 
 2. There is a cluster of cells characterised by a low RNA output (nCount_RNA). Use tidygate to identify the cell composition (curated_cell_type) of that cluster.
