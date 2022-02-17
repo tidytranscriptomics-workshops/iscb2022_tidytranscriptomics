@@ -1,12 +1,12 @@
 ---
-title: "Tidy Transcriptomics case study"
+title: "Tidy Transcriptomics for Single-cell RNA Sequencing Analyses"
 author:
   - Maria Doyle, Peter MacCallum Cancer Centre^[<maria.doyle at petermac.org>]
   - Stefano Mangiola, Walter and Eliza Hall Institute^[<mangiola.s at wehi.edu.au>]
 output: rmarkdown::html_vignette
 bibliography: "`r file.path(system.file(package='iscb2022tidytranscriptomics', 'vignettes'), 'tidytranscriptomics.bib')`"
 vignette: >
-  %\VignetteIndexEntry{Introduction to Tidy Transcriptomics}
+  %\VignetteIndexEntry{Tidy Transcriptomics for Single-cell RNA Sequencing Analyses}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,7 +15,13 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Goals
+## Instructors
+
+*Dr. Stefano Mangiola* is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.
+
+*Dr. Maria Doyle* is the Application and Training Specialist for Research Computing at the Peter MacCallum Cancer Centre in Melbourne, Australia. She has a PhD in Molecular Biology and currently works in bioinformatics and data science education and training. She is passionate about supporting researchers, reproducible research, open source and tidy data.
+
+## Workshop goals and objectives
 
 ### What you will learn
 
@@ -29,18 +35,6 @@ knitr::opts_chunk$set(echo = TRUE)
 -   The molecular technology of single-cell sequencing
 -   The fundamentals of single-cell data analysis
 -   The fundamentals of tidy data analysis
-
-## Instructors
-
-*Dr. Stefano Mangiola* is currently a Postdoctoral researcher in the laboratory of Prof. Tony Papenfuss at the Walter and Eliza Hall Institute in Melbourne, Australia. His background spans from biotechnology to bioinformatics and biostatistics. His research focuses on prostate and breast tumour microenvironment, the development of statistical models for the analysis of RNA sequencing data, and data analysis and visualisation interfaces.
-
-*Dr. Maria Doyle* is the Application and Training Specialist for Research Computing at the Peter MacCallum Cancer Centre in Melbourne, Australia. She has a PhD in Molecular Biology and currently works in bioinformatics and data science education and training. She is passionate about supporting researchers, reproducible research, open source and tidy data.
-
-## Workshop goals and objectives
-
-This workshop will demonstrate a real-world example of using tidy transcriptomics packages, such as tidyseurat, to perform a single cell analysis.
-
-This workshop is not a step-by-step introduction in how to perform single-cell analysis. For an overview of single-cell analysis steps performed in a tidy way please see the [ISMB2021 workshop](https://tidytranscriptomics-workshops.github.io/ismb2021_tidytranscriptomics/articles/tidytranscriptomics.html).
 
 ## Getting started
 
@@ -154,6 +148,8 @@ seurat_obj |> select(sample_id, sample, BCB)
 
 
 ## Case study
+
+We will now demonstrate a real-world example of the power of using tidy transcriptomics packages in single cell analysis. For more information on single-cell analysis steps performed in a tidy way please see the [ISMB2021 workshop](https://tidytranscriptomics-workshops.github.io/ismb2021_tidytranscriptomics/articles/tidytranscriptomics.html).
 
 ### Data pre-processing
 
@@ -428,7 +424,7 @@ pbmc |>
     z = ~`UMAP_3`,
     color = ~curated_cell_type,
     colors = dittoSeq::dittoColors()
-  ) %>% 
+  ) |> 
   
    add_markers(size = I(1))
 
