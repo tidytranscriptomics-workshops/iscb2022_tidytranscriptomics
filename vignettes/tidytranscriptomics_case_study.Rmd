@@ -381,17 +381,19 @@ For comparison, we show the alternative using base R and Seurat
 
 counts_positive = 
   GetAssayData(seurat_obj, assay="SCT")[c("CD3D", "TRDC", "TRGC1", "TRGC2"),] |> 
-  colSums()
+  colSums() |> 
+  scales::rescale(to=c(0,1)) 
 
 counts_negative = 
   GetAssayData(seurat_obj, assay="SCT")[c("CD8A", "CD8B"),] |> 
-  colSums()
+  colSums()  |> 
+  scales::rescale(to=c(0,1)) 
 
 seurat_obj$signature_score = counts_positive - counts_negative
 
 p = FeaturePlot(seurat_obj, features = "signature_score")
 
-# This is not reproducible (on the constrary of tidygate)
+# This is not reproducible (on the contrary of tidygate)
 seurat_obj$within_gate = colnames(seurat_obj) %in% CellSelector(plot = p)
 
 seurat_obj |> 
