@@ -381,7 +381,8 @@ pbmc |>
     x = ~`UMAP_1`,
     y = ~`UMAP_2`,
     z = ~`UMAP_3`,
-    color = ~curated_cell_type,
-    size=0.05
-  )
+    color = ~curated_cell_type
+  ) %>% 
+  
+   add_markers(size = I(1))
 ```
