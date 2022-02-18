@@ -116,7 +116,7 @@ seurat_obj |> select(.cell, nCount_RNA, Phase)
 
 We also see the UMAP columns as they are not part of the cell metadata, they are read-only.
 If we want to save the edited metadata, the Seurat object is modified accordingly. 
-```{r}
+```{r eval = FALSE}
 # Save edited metadata
 seurat_modified <- seurat_obj |> select(.cell, nCount_RNA, Phase)
 # View Seurat metadata
