@@ -1,6 +1,6 @@
 Package: iscb2022tidytranscriptomics
 Title: Tidy Transcriptomics for Single-cell RNA Sequencing Analyses
-Version: 0.12.1
+Version: 0.12.2
 Authors@R: c(
     person("Maria", "Doyle", email="maria.doyle@petermac.org",
     role = c("aut"),
