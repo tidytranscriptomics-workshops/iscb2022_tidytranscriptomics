@@ -47,13 +47,13 @@ knitr::opts_chunk$set(echo = TRUE)
 Easiest way to run this material. Only available during workshop. Many thanks to the Australian Research Data Commons (ARDC) for providing RStudio in the Australian Nectar Research Cloud and Andy Botting from ARDC for helping to set up.
 
 -   Login to one of the servers (e.g. <https://rstudio5.tidytranscriptomics-workshop.cloud.edu.au/rstudio/>) with one of the usernames and passwords from the spreadsheet provided at the workshop. Add your name into the spreadsheet beside the login you're using.
--   Open `tidytranscriptomics_case_study.Rmd` in `ismb2022_tidytranscriptomcs/vignettes` folder
+-   Open `tidytranscriptomics_case_study.Rmd` in `iscb2022_tidytranscriptomcs/vignettes` folder
 
 ### Local
 
-We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/index.html#workshop-package-installation).
+We will use the Cloud during the ISCB workshop and this method is available if you want to run the material after the workshop. If you want to install on your own computer, see instructions [here](https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/index.html#workshop-package-installation).
 
-Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/ismb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html).
+Alternatively, you can view the material at the workshop webpage [here](https://tidytranscriptomics-workshops.github.io/iscb2022_tidytranscriptomics/articles/tidytranscriptomics_case_study.html).
 
 ```{r message = FALSE}
 library(Seurat)

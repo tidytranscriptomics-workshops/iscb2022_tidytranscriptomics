@@ -1,6 +1,6 @@
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6141308.svg)](https://doi.org/10.5281/zenodo.6141308)
-[![.github/workflows/basic_checks.yaml](https://github.com/tidytranscriptomics-workshops/iscb2021_tidytranscriptomics/workflows/.github/workflows/basic_checks.yaml/badge.svg)](https://github.com/tidytranscriptomics-workshops/iscb2021_tidytranscriptomics/actions) 	
+[![.github/workflows/basic_checks.yaml](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/workflows/.github/workflows/basic_checks.yaml/badge.svg)](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/actions) 	
 <!-- badges: end -->
 
 # Tidy Transcriptomics for Single-cell RNA Sequencing Analyses
@@ -60,7 +60,7 @@ This can be achieved with the integration of packages present in the R CRAN and 
 
 ### Workshop Participation
 
-The workshop format is a 1.5 hour session consisting of lecture, hands-on demo, exercises and Q&A.
+The workshop format is a 2 hour session consisting of lecture, hands-on demo, exercises and Q&A.
 
 
 ### Workshop goals and objectives
