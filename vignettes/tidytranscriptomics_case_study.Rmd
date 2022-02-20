@@ -116,11 +116,11 @@ seurat_obj |> select(.cell, nCount_RNA, Phase)
 
 We also see the UMAP columns as they are not part of the cell metadata, they are read-only.
 If we want to save the edited metadata, the Seurat object is modified accordingly. 
-```{r eval = FALSE}
+```{r}
 # Save edited metadata
 seurat_modified <- seurat_obj |> select(.cell, nCount_RNA, Phase)
 # View Seurat metadata
-seurat_modified[[]] 
+seurat_modified[[]] |> head()
 ```
 
 We can use `mutate` to create a column. For example, we could create a new `Phase_l` column that contains a lower-case version of `Phase`.
