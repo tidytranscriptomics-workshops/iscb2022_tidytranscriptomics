@@ -29,7 +29,7 @@ If you want to install the packages and material post-workshop, the instructions
 
 ### Via Docker image
 
-If you're familiar with [Docker](https://docs.docker.com/get-docker/) you could use the Docker image which has all the software pre-configured to the correct versions.
+If you're familiar with [Docker](https://docs.docker.com/get-docker/), you could use the Docker image which has all the software pre-configured to the correct versions.
 
 ```
 docker run -e PASSWORD=abc -p 8787:8787 ghcr.io/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics
@@ -54,7 +54,6 @@ Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS" = "true")
 remotes::install_github(c("stemangiola/tidyseurat@v0.5.1", "stemangiola/tidySingleCellExperiment@v1.3.2"))
 
 # Install workshop package
-
 remotes::install_github("tidytranscriptomics-workshops/iscb2022_tidytranscriptomics", build_vignettes = TRUE)
 
 # To view vignettes
