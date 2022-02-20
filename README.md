@@ -1,6 +1,7 @@
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6141308.svg)](https://doi.org/10.5281/zenodo.6141308)
-[![.github/workflows/basic_checks.yaml](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/workflows/.github/workflows/basic_checks.yaml/badge.svg)](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/actions) 	
+[![.github/workflows/basic_checks.yaml](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/workflows/.github/workflows/basic_checks.yaml/badge.svg)](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/actions)
+[![Docker](https://github.com/Bioconductor/BioC2020/raw/master/docs/images/docker_icon.png)](https://ghcr.io/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics) 
 <!-- badges: end -->
 
 # Tidy Transcriptomics for Single-cell RNA Sequencing Analyses
@@ -24,7 +25,24 @@ More details on the workshop are below.
 
 For the ISCB 2022 workshop, an RStudio in the cloud will be provided with everything installed, all that participants will need is a web browser. 
 
-If you want to install the packages and material post-workshop, the instructions are below. The workshop is designed for R `4.1` and Bioconductor 3.14.
+If you want to install the packages and material post-workshop, the instructions are below. The workshop is designed for R `4.1` and can be installed using one of the two ways below.
+
+### Via Docker image
+
+If you're familiar with [Docker](https://docs.docker.com/get-docker/) you could use the Docker image which has all the software pre-configured to the correct versions.
+
+```
+docker run -e PASSWORD=abc -p 8787:8787 ghcr.io/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics
+```
+
+Once running, navigate to <http://localhost:8787/> and then login with
+`Username:rstudio` and `Password:abc`.
+
+You should see the Rmarkdown file with all the workshop code which you can run.
+
+### Via GitHub
+
+Alternatively, you could install the workshop using the commands below in R `4.1`.
 
 ```
 #install.packages('remotes')
