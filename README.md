@@ -2,7 +2,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6141308.svg)](https://doi.org/10.5281/zenodo.6141308)
 [![.github/workflows/basic_checks.yaml](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/workflows/.github/workflows/basic_checks.yaml/badge.svg)](https://github.com/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics/actions)
 [![Docker](https://github.com/Bioconductor/BioC2020/raw/master/docs/images/docker_icon.png)](https://ghcr.io/tidytranscriptomics-workshops/iscb2022_tidytranscriptomics) 
-<!-- badges: end -->
+<!-- badges: end --> 
 
 # Tidy Transcriptomics for Single-cell RNA Sequencing Analyses
 <p float="left">
